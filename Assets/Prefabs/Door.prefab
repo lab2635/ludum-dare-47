@@ -363,10 +363,7 @@ MonoBehaviour:
   cooldown: 0
   proxies: []
   holdTime: 0
-  objectName: object
-  activeTemplate: activate {0}
-  inactiveTemplate: deactivate {0}
-  toggled: 0
+  RequiredItem: 0
 --- !u!95 &5303116132936921682
 Animator:
   serializedVersion: 3
@@ -398,4 +395,4 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 3, z: 1}
-  m_Center: {x: 1, y: 1.5, z: 0}
+  m_Center: {x: 1, y: 1.5, z: -0.2}

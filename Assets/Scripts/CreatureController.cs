@@ -25,8 +25,13 @@ public class CreatureController : MonoBehaviour
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         gun = GetComponentInChildren<Gun>();
+        gun.gunEnabled = false;
         dashAccumulator = dashCooldown;
-        AcquireGun();
+
+        if (GameManager.Instance.CheckpointList[(int)Checkpoints.GunRoomComplete])
+        {
+            AcquireGun();
+        }
     }
 
     public void AcquireGun()

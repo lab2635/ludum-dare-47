@@ -3,9 +3,10 @@
 --- !u!1 &100000
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 5
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
   m_Component:
   - component: {fileID: 400000}
   - component: {fileID: 11400000}
@@ -25,14 +26,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1002 &100001
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!4 &400000
 Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -41,14 +40,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1002 &400001
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -80,14 +77,12 @@ MonoBehaviour:
   autoCreateLight: 1
   autoCreateForce: 1
   autoCreateHeatwave: 1
---- !u!1002 &11400001
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!114 &11400002
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -114,26 +109,24 @@ MonoBehaviour:
   startVelocity: {x: 0, y: 0, z: 0}
   velocity: {x: 200, y: 200, z: 200}
   detailThreshold: 0
-  sprayObject: {fileID: 100004, guid: 5cae1a02f5362443284e452c3020967f, type: 2}
+  sprayObject: {fileID: 100004, guid: 5cae1a02f5362443284e452c3020967f, type: 3}
   count: 33
   startingRadius: 5
   minScale: 0.2004919
   maxScale: 0.5389314
---- !u!1002 &11400003
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!114 &11400004
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0a30e21f576d054695cb3804fce8a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  on: 1
+  on: 0
   detonatorControlled: 1
   startSize: 1
   size: 5
@@ -156,14 +149,12 @@ MonoBehaviour:
   zOffset: 0.97655946
   distortion: 38.150185
   heatwaveMaterial: {fileID: 0}
---- !u!1002 &11400005
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!114 &11400006
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -191,14 +182,12 @@ MonoBehaviour:
   velocity: {x: 300, y: 300, z: 300}
   detailThreshold: 0
   sparksMaterial: {fileID: 0}
---- !u!1002 &11400007
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!114 &11400008
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -226,15 +215,12 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   detailThreshold: 0
   shockwaveMaterial: {fileID: 0}
-  renderMode: 4
---- !u!1002 &11400009
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!114 &11400010
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -267,14 +253,12 @@ MonoBehaviour:
   drawFireballA: 1
   drawFireballB: 1
   drawFireShadow: 1
---- !u!1002 &11400011
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!114 &11400012
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -307,14 +291,12 @@ MonoBehaviour:
   drawFireballA: 1
   drawFireballB: 1
   drawFireShadow: 1
---- !u!1002 &11400013
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!114 &11400014
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_Enabled: 0
   m_EditorHideFlags: 0
@@ -341,21 +323,19 @@ MonoBehaviour:
   startVelocity: {x: 0, y: 0, z: 0}
   velocity: {x: 0, y: 0, z: 0}
   detailThreshold: 0
-  sprayObject: {fileID: 100000, guid: abdc837d9a07acd409959e581ef68e61, type: 2}
+  sprayObject: {fileID: 100000, guid: abdc837d9a07acd409959e581ef68e61, type: 3}
   count: 8
   startingRadius: 4.2410393
   minScale: 1
   maxScale: 1
---- !u!1002 &11400015
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!114 &11400016
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2b0ca7171ed55c4eaaf9aba39d05e87, type: 3}
   m_Name: 
@@ -390,14 +370,12 @@ MonoBehaviour:
   minVolume: 0.4
   maxVolume: 1
   rolloffFactor: 0.5
---- !u!1002 &11400017
-EditorExtensionImpl:
-  serializedVersion: 6
 --- !u!114 &11400018
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -425,17 +403,3 @@ MonoBehaviour:
   velocity: {x: 200, y: 0, z: 200}
   detailThreshold: 1
   cloudRingMaterial: {fileID: 0}
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 100000}
-  m_IsPrefabParent: 1
---- !u!1002 &100100001
-EditorExtensionImpl:
-  serializedVersion: 6
