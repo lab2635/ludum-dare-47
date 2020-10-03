@@ -7,10 +7,10 @@ public class Gun : MonoBehaviour
     private float lastTriggerAccumulator = 0f;
     private int bulletIndex;
     private bool firing = false;
+    private Collider parentCollider;
     
-    private const string BulletTag = "Bullet";
     private const string PlayerTag = "Player";
-
+    
     public bool gunEnabled = true;
     public bool autoFire = true;
     public float bulletSpeed = 11f;
@@ -21,14 +21,11 @@ public class Gun : MonoBehaviour
 
     public void Hit(Bullet bullet, Collider collision)
     {
-        if (!collision.CompareTag(BulletTag))
+        Return(bullet);
+        
+        if (collision.CompareTag(PlayerTag))
         {
-            Return(bullet);
-
-            if (collision.CompareTag(PlayerTag))
-            {
-                GameManager.Instance.KillRespawnPlayer();
-            }
+            GameManager.Instance.KillRespawnPlayer();
         }
     }
 
@@ -41,6 +38,7 @@ public class Gun : MonoBehaviour
     {
         bullets = new Bullet[20];
         lastTriggerAccumulator = triggerRate;
+        parentCollider = GetComponentInParent<Collider>();
         
         for (var i = 0; i < bullets.Length; i++)
         {
@@ -56,16 +54,23 @@ public class Gun : MonoBehaviour
     private IEnumerator Fire()
     {
         firing = true;
-        
+
         for (var i = 0; i < bulletCount; i++)
         {
             var bullet = bullets[bulletIndex];
+            var bulletCollider = bullet.gameObject.GetComponent<Collider>();
             var sourceTransform = bullet.source.gameObject.transform;
-            bullet.transform.position = sourceTransform.position;
+            
+            if (parentCollider != null)
+                Physics.IgnoreCollision(bulletCollider, parentCollider, true);
+            
             bullet.transform.rotation = sourceTransform.rotation;
+            bullet.transform.position = sourceTransform.position;
             bullet.gameObject.SetActive(true);
+            
             bulletIndex = (bulletIndex + 1) % bullets.Length;
             lastTriggerAccumulator = 0;
+            
             yield return new WaitForSeconds(fireRate);
         }
 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using Doozy.Engine.UI;
 
 public class InteractableDetector : MonoBehaviour
@@ -7,28 +8,37 @@ public class InteractableDetector : MonoBehaviour
 
     private Interactable previousInteractable;
     private UIView interactionUI;
+	private List<Interactable> interactables;
 
     private void Start()
     {
         this.interactionUI = GameObject.FindGameObjectWithTag("InteractionUI").GetComponent<UIView>();
+		interactables = new List<Interactable>();
     }
 
     void Update()
     {
         // TODO: use input mapping
-        
-        if (previousInteractable != null && Input.GetKeyDown(KeyCode.E))
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            var interactionEvent = new InteractionEvent
+            foreach (var interactable in interactables)
             {
-                player = player,
-                proxied = false,
-                sender = previousInteractable,
-                timestamp = Time.time
-            };
-            
-            previousInteractable.Interact(ref interactionEvent);
-            SetInteractionText(previousInteractable.description);
+                if (interactable != null && Input.GetKeyDown(KeyCode.E))
+                {
+                    var interactionEvent = new InteractionEvent
+                    {
+                        player = player,
+                        proxied = false,
+                        sender = null,
+                        timestamp = Time.time
+                    };
+
+                    interactable.Interact(ref interactionEvent);
+
+                    SetInteractionText(interactable.description);
+                }
+            }
         }
     }
 
@@ -40,8 +50,8 @@ public class InteractableDetector : MonoBehaviour
         {
             if (CanInteract(interactable) && interactable.CanInteract(player))
             {
-                previousInteractable = interactable;
-                SetInteractionText(previousInteractable.description);
+                interactables.Add(interactable);
+                SetInteractionText(interactable.description);
                 interactable.SetSelecting(true);
             }
         }
@@ -51,10 +61,15 @@ public class InteractableDetector : MonoBehaviour
     {
         SetInteractionText(string.Empty);
         
-        if (previousInteractable != null)
+        var interactable = other.gameObject.GetComponent<Interactable>();
+        
+        if (interactable != null)
         {
-            previousInteractable.SetSelecting(false);
-            previousInteractable = null;
+            if (interactables.Remove(interactable) && interactables.Count > 0)
+            {
+                var lastInteractable = interactables[interactables.Count - 1];
+                SetInteractionText(lastInteractable.description);
+            }
         }
     }
     

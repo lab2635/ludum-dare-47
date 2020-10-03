@@ -1147,7 +1147,7 @@ GameObject:
   - component: {fileID: 2559618258591784912}
   - component: {fileID: 7690058803164870683}
   - component: {fileID: 3187227102819707538}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Creature
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1226,6 +1226,8 @@ MonoBehaviour:
   gravity: {x: 0, y: -10, z: 0}
   cameraOffset: {x: 0, y: 15, z: -5}
   rotationSpeed: 270
+  dashCooldown: 1
+  dashAcceleration: 200
 --- !u!114 &2559618258591784912
 MonoBehaviour:
   m_ObjectHideFlags: 0

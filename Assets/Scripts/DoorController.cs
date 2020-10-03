@@ -49,8 +49,11 @@ public class DoorController : Interactable
 
     private void ResetState()
     {
+        if (this.doorOpened)
+        {
+            this.CloseDoor();
+        }
         this.doorOpened = false;
-        this.CloseDoor();
         // would like to set interactable message here
     }
 }

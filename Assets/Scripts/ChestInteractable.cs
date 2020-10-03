@@ -59,10 +59,13 @@ public class ChestInteractable : ToggleInteraction
 
     private void ResetState()
     {
+        if (this.chestOpened)
+        {
+            this.CloseChest();
+        }
         this.chestOpened = false;
         this.contentsTaken = false;
         base.canInteract = true;
-        this.CloseChest();
         // would like to set interactable message here
     }
 }

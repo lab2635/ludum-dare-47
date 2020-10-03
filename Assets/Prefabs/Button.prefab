@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1857038384372401226}
   - component: {fileID: 1857038384372401227}
   - component: {fileID: 1857038384372401224}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,7 +811,7 @@ GameObject:
   - component: {fileID: 1857038384754275210}
   - component: {fileID: 1857038384754275211}
   - component: {fileID: 1857038384754275208}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1607,7 +1607,7 @@ GameObject:
   - component: {fileID: 1857038383387524832}
   - component: {fileID: 1857038383387524833}
   - component: {fileID: 1857038383387524831}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Button
   m_TagString: Interactable
   m_Icon: {fileID: 0}
