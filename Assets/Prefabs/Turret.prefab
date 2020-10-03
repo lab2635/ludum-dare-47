@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4950281319662566761}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8604688752409410172}
   m_Father: {fileID: 842846297213339474}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &4950281319662566765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2281,7 +2281,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6606726049015458969}
-  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.22599792, y: 0.41600037, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3060,7 +3060,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 842846297213339474}
-  - component: {fileID: 1626856862118848311}
+  - component: {fileID: 300386868615281490}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -3083,7 +3083,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1626856862118848311
+--- !u!114 &300386868615281490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3092,7 +3092,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8991682222486065274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c6cc64ae2786ff4f9ee30940a92773a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ede28faf6174d5287955a4379c76eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6431581873540194188, guid: 4ac93ea03a840a24cacf2b7154c47edf, type: 3}
+  gunEnabled: 1
+  autoFire: 1
+  bulletSpeed: 11
+  bulletCount: 1
+  fireRate: 0
+  triggerRate: 3
+  bulletPrefab: {fileID: 4070859751482108958, guid: 4ac93ea03a840a24cacf2b7154c47edf, type: 3}
