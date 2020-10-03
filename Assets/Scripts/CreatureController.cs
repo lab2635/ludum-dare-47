@@ -12,7 +12,8 @@ public class CreatureController : MonoBehaviour
     [SerializeField] public Vector3 cameraOffset = new Vector3(0, 10, 0);
     [SerializeField]
     public float rotationSpeed = 270f;
-    
+
+    private Gun gun;
     private Animator animator;
     private CharacterController controller;
     private bool grounded;
@@ -23,6 +24,13 @@ public class CreatureController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
+        gun = GetComponentInChildren<Gun>();
+        AcquireGun();
+    }
+
+    public void AcquireGun()
+    {
+        gun.gunEnabled = true;
     }
 
     void Update()
@@ -34,30 +42,30 @@ public class CreatureController : MonoBehaviour
         input.x = x;
         input.z = y;
         input = input.normalized;
-
-        if (Input.GetKey(KeyCode.Space) && controller.isGrounded)
-        {
-            velocity.y = jumpForce;
-        }
-
+        
         var damping = speed * 3;
 
         velocity.x = Mathf.Lerp(velocity.x, input.x * speed, damping * Time.deltaTime);
         velocity.z = Mathf.Lerp(velocity.z, input.z * speed, damping * Time.deltaTime);
 
+        if (Input.GetButtonDown("Fire1") && gun != null)
+        {
+            gun.Trigger();
+        }
+        
         if (!controller.isGrounded)
         {
             velocity += gravity * Time.deltaTime;
-
+        
             if (velocity.y < 0)
             {
                 velocity.y -= (50 * Time.deltaTime);
             }
         }
 
-        animator.SetBool("jump", !controller.isGrounded);
-        animator.SetFloat("vx", input.x);
-        animator.SetFloat("vy", input.z);
+        // animator.SetBool("jump", !controller.isGrounded);
+        // animator.SetFloat("vx", input.x);
+        // animator.SetFloat("vy", input.z);
 
         controller.Move(velocity * Time.deltaTime);
         
