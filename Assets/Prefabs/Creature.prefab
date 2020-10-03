@@ -791,7 +791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5733204128575253062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1.438}
+  m_LocalPosition: {x: 0, y: 1.619, z: 1.438}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7073247942940756934}
@@ -812,7 +812,9 @@ MonoBehaviour:
   gunEnabled: 1
   autoFire: 0
   bulletSpeed: 11
+  bulletCount: 1
   fireRate: 3
+  triggerRate: 1
   bulletPrefab: {fileID: 4070859751482108958, guid: b8770075e30e9c24699e127649f99213, type: 3}
 --- !u!1 &5738675466307097793
 GameObject:
@@ -1142,10 +1144,12 @@ GameObject:
   - component: {fileID: 7323839230909906728}
   - component: {fileID: 7323839230909906743}
   - component: {fileID: 7323839230909906729}
+  - component: {fileID: 2559618258591784912}
+  - component: {fileID: 7690058803164870683}
   - component: {fileID: 3187227102819707538}
   m_Layer: 0
   m_Name: Creature
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1222,6 +1226,33 @@ MonoBehaviour:
   gravity: {x: 0, y: -10, z: 0}
   cameraOffset: {x: 0, y: 15, z: -5}
   rotationSpeed: 270
+--- !u!114 &2559618258591784912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593888296310100348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e962fb7241652604c976a8968010d00b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Key1View: {fileID: 0}
+  Key2View: {fileID: 0}
+  Key3View: {fileID: 0}
+--- !u!114 &7690058803164870683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593888296310100348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d751a5d11e2a9e48a89019648e169ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!54 &3187227102819707538
 Rigidbody:
   m_ObjectHideFlags: 0

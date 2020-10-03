@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour
     private bool firing = false;
     
     private const string BulletTag = "Bullet";
+    private const string PlayerTag = "Player";
 
     public bool gunEnabled = true;
     public bool autoFire = true;
@@ -23,6 +24,11 @@ public class Gun : MonoBehaviour
         if (!collision.CompareTag(BulletTag))
         {
             Return(bullet);
+
+            if (collision.CompareTag(PlayerTag))
+            {
+                GameManager.Instance.KillRespawnPlayer();
+            }
         }
     }
 
