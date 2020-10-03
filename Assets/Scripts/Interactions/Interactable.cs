@@ -51,6 +51,20 @@ public abstract class Interactable : MonoBehaviour
         return canInteract && Time.time >= nextInteraction;
     }
 
+    public void Interact(GameObject sender)
+    {
+        var player = GameObject.FindGameObjectWithTag("Player").GetComponent<CreatureController>();
+        var ev = new InteractionEvent
+        {    
+            timestamp = Time.time,
+            proxied = true,
+            player = player,
+            sender = sender.GetComponent<Interactable>()
+        };
+        
+        Interact(ref ev);
+    }
+    
     public void Interact(ref InteractionEvent ev)
     {
         OnInteract(ref ev);
