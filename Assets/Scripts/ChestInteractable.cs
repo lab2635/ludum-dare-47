@@ -6,7 +6,8 @@ using UnityEngine;
 public class ChestInteractable : ToggleInteraction
 {
     public InventoryItems Contents;
-    public bool OpenRemotely;
+    public InventoryItems RequiredItem;
+    public Checkpoints RelatedCheckpoint;
 
     private Animator animator;
     private bool chestOpened;
@@ -22,7 +23,7 @@ public class ChestInteractable : ToggleInteraction
 
     protected override void OnInteract(ref InteractionEvent ev)
     {
-        if (this.OpenRemotely)
+        if (this.RequiredItem == InventoryItems.Remote)
         {
             if (this.chestOpened && !this.contentsTaken)
             {
@@ -33,14 +34,13 @@ public class ChestInteractable : ToggleInteraction
             else if (!this.chestOpened && !this.contentsTaken && ev.proxied)
             {
                 base.OnInteract(ref ev);
-                this.chestOpened = true;
                 this.OpenChest();
             }
         }
-        else if(!this.contentsTaken)
+        else if(!this.contentsTaken && 
+            (this.RequiredItem == InventoryItems.None || ev.player.GetComponent<InventoryManager>().Inventory.Contains(this.RequiredItem)))
         {
             this.OpenChest();
-            this.chestOpened = true;
             ev.player.GetComponent<InventoryManager>().GetItem(this.Contents);
             this.contentsTaken = true;
             base.canInteract = false;
@@ -49,23 +49,26 @@ public class ChestInteractable : ToggleInteraction
 
     public void OpenChest()
     {
+        this.chestOpened = true;
         this.animator.SetTrigger("OpenChest");
     }
 
     public void CloseChest()
     {
+        this.chestOpened = false;
         this.animator.SetTrigger("CloseChest");
     }
 
     private void ResetState()
     {
-        if (this.chestOpened)
+        if (!GameManager.Instance.CheckpointList[(int)this.RelatedCheckpoint])
         {
-            this.CloseChest();
+            if (this.chestOpened)
+            {
+                this.CloseChest();
+            }
+            this.contentsTaken = false;
+            base.canInteract = true;
         }
-        this.chestOpened = false;
-        this.contentsTaken = false;
-        base.canInteract = true;
-        // would like to set interactable message here
     }
 }

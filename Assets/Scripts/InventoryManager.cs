@@ -44,6 +44,10 @@ public class InventoryManager : MonoBehaviour
                 this.Inventory.Add(InventoryItems.Key3);
                 this.Key3View.Show();
                 break;
+            case InventoryItems.Gun:
+                this.Inventory.Add(InventoryItems.Gun);
+                this.gameObject.GetComponent<CreatureController>().AcquireGun();
+                break;
             default: break;
         }
     }
@@ -82,5 +86,7 @@ public enum InventoryItems
     None,
     Key1,
     Key2,
-    Key3
+    Key3,
+    Remote,
+    Gun
 }

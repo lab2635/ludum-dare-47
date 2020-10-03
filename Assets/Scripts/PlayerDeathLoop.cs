@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerDeathLoop : MonoBehaviour
 {
+    public GameObject DetonatorPrefab;
+
     private GameObject body;
     private GameObject respawnPoint;
 
@@ -15,16 +17,24 @@ public class PlayerDeathLoop : MonoBehaviour
         this.respawnPoint = GameObject.FindGameObjectWithTag("RespawnPoint");
     }
 
-    public async Task KillPlayer()
+    public void KillPlayer()
     {
-        // explosion or something
+        Detonator dTemp = (Detonator)this.DetonatorPrefab.GetComponent("Detonator");
+
+        GameObject exp = (GameObject)Instantiate(this.DetonatorPrefab, this.transform.position, Quaternion.identity);
+        dTemp = (Detonator)exp.GetComponent("Detonator");
+        dTemp.detail = 1.0f;
+
+        Destroy(exp, 2);
+
         this.body.SetActive(false);
     }
 
-    public async Task RespawnPlayer()
+    public IEnumerator RespawnPlayer(System.Action action)
     {
+        yield return new WaitForSeconds(2);
+        action.Invoke();
         this.transform.position = this.respawnPoint.transform.position;
         this.body.SetActive(true);
-        await Task.Delay(100);
     }
 }

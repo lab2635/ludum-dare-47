@@ -690,7 +690,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7323839230909906729}
-  interactionText: {fileID: 0}
 --- !u!135 &7313138124886154509
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1255,6 +1254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d751a5d11e2a9e48a89019648e169ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DetonatorPrefab: {fileID: 100000, guid: 809320482fb694b6e8149a226202b86a, type: 3}
 --- !u!54 &3187227102819707538
 Rigidbody:
   m_ObjectHideFlags: 0
