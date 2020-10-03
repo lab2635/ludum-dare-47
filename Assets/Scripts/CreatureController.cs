@@ -1,14 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class CreatureController : MonoBehaviour
 {
-    public float speed;
-    public float jumpForce = 50;
+    [SerializeField] public float speed = 10;
+    [SerializeField]
+    public float jumpForce = 5;
+    [SerializeField]
     public Vector3 gravity = new Vector3(0, -10, 0);
-
+    [SerializeField]
+    public float cameraDistance = 23f;
+    [SerializeField]
+    public float rotationSpeed = 270f;
+    
     private Animator animator;
     private CharacterController controller;
     private bool grounded;
@@ -56,16 +60,23 @@ public class CreatureController : MonoBehaviour
         animator.SetFloat("vy", input.z);
 
         controller.Move(velocity * Time.deltaTime);
+        
+        var pos = transform.position;
+        var mousePos = Input.mousePosition;
+        var playerPos = Camera.main.WorldToScreenPoint(pos);
+        
+        mousePos.x = mousePos.x - playerPos.x;
+        mousePos.y = mousePos.y - playerPos.y;
+        
+        var angle = Mathf.Atan2(mousePos.x, mousePos.y) * Mathf.Rad2Deg;
+        var rotation = Quaternion.Euler(Vector3.up * angle);
 
-        if (input.sqrMagnitude > 0)
-        {
-            facing = input;
-        }
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotation,
+            rotationSpeed * Mathf.Deg2Rad * Time.deltaTime);
 
-        var rotation = Quaternion.LookRotation(facing, Vector3.up);
-
-        transform.rotation = Quaternion.RotateTowards(
-            transform.rotation, rotation, 360f * Time.deltaTime);
+        pos.y = cameraDistance;
+        
+        Camera.main.transform.position = pos;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

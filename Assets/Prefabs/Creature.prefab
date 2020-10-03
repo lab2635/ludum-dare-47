@@ -1036,7 +1036,7 @@ GameObject:
   - component: {fileID: 7323839230909906743}
   - component: {fileID: 7323839230909906729}
   m_Layer: 0
-  m_Name: GreenCreature
+  m_Name: Creature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1110,6 +1110,9 @@ MonoBehaviour:
   speed: 10
   jumpForce: 5
   gravity: {x: 0, y: -10, z: 0}
+  body: {fileID: 7886484372483278917}
+  cameraDistance: 23
+  rotationSpeed: 270
 --- !u!1 &7698789679939129689
 GameObject:
   m_ObjectHideFlags: 0
