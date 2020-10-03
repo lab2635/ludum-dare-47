@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class SwitchInteraction : ToggleInteraction
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("PlayerBullet"))
+        {
+            var interactionEvent = new InteractionEvent
+            {
+                player = GameObject.FindGameObjectWithTag("Player").GetComponent<CreatureController>(),
+                proxied = true,
+                sender = other.gameObject.GetComponent<Interactable>(),
+                timestamp = Time.time
+            };
+
+            base.Interact(ref interactionEvent);
+        }
     }
 }

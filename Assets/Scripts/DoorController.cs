@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class DoorController : ToggleInteraction
+public class DoorController : Interactable
 {
+    public InventoryItems RequiredItem;
+
     private Animator animator;
     private bool doorOpened;
 
@@ -13,20 +15,25 @@ public class DoorController : ToggleInteraction
     {
         this.doorOpened = false;
         this.animator = this.gameObject.GetComponent<Animator>();
+        GameManager.OnReset += ResetState;
     }
 
     protected override void OnInteract(ref InteractionEvent ev)
     {
-        base.OnInteract(ref ev);
-        this.doorOpened = !this.doorOpened;
+        if (ev.player.GetComponent<InventoryManager>().Inventory.Contains(this.RequiredItem))
+        {
+            base.OnInteract(ref ev);
+            this.doorOpened = !this.doorOpened;
 
-        if (this.doorOpened)
-        {
-            this.OpenDoor();
-        }
-        else
-        {
-            this.CloseDoor();
+            if (this.doorOpened)
+            {
+                this.OpenDoor();
+                ev.player.GetComponent<InventoryManager>().RemoveItem(this.RequiredItem);
+            }
+            else
+            {
+                this.CloseDoor();
+            }
         }
     }
 
@@ -38,5 +45,12 @@ public class DoorController : ToggleInteraction
     public void CloseDoor()
     {
         this.animator.SetTrigger("CloseDoor");
+    }
+
+    private void ResetState()
+    {
+        this.doorOpened = false;
+        this.CloseDoor();
+        // would like to set interactable message here
     }
 }

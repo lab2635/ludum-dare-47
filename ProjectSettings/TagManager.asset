@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Bullet
   - Interactable
+  - PlayerBullet
+  - InventoryUI
+  - RespawnPoint
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 ﻿using Doozy.Engine.UI;
 using System;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,6 +21,9 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     public float TimeRemaining;
     public float TimeToReset;
+
+    public delegate void ResetAction();
+    public static event ResetAction OnReset;
 
     private bool isPlaying;
     private float startTime;
@@ -113,7 +117,7 @@ public class GameManager : SingletonBehaviour<GameManager>
         this.TimeRemaining -= Time.deltaTime;
         this.TimeRemaining = Mathf.Clamp(this.TimeRemaining, 0, this.TimeToReset);
 
-        if(this.TimeRemaining > 0)
+        if(this.TimeRemaining > 0 && !this.alreadyDead)
         {
             float seconds = Mathf.FloorToInt(this.TimeRemaining % 60);
             float milliseconds = 100 - ((int)(Time.timeSinceLevelLoad * 100f) % 100);
@@ -123,9 +127,23 @@ public class GameManager : SingletonBehaviour<GameManager>
         else if (this.TimeRemaining <= 0 && !this.NeverLose && !this.alreadyDead)
         {
             this.TimerText.text = "00:00";
-            this.IsPlayerControllerEnabled = false;
-            //GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerKiller>().KillPlayer();
-            this.alreadyDead = true;
+            this.KillRespawnPlayer();
         }
+    }
+
+    public async void KillRespawnPlayer()
+    {
+        this.IsPlayerControllerEnabled = false;
+        this.alreadyDead = true;
+
+        PlayerDeathLoop pdl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDeathLoop>();
+        await pdl.KillPlayer();
+
+        OnReset();
+
+        await pdl.RespawnPlayer();
+        this.IsPlayerControllerEnabled = true;
+        this.alreadyDead = false;
+        this.TimeRemaining = this.TimeToReset;
     }
 }
