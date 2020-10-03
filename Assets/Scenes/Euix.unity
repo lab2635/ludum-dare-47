@@ -2962,6 +2962,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 22519295068775643, guid: e31cf837e8f3d0d4bb568386f2988ebd, type: 3}
+      propertyPath: interactionText
+      value: 
+      objectReference: {fileID: 1889221654}
     - target: {fileID: 1886216111879809518, guid: e31cf837e8f3d0d4bb568386f2988ebd, type: 3}
       propertyPath: triggerRate
       value: 0.2

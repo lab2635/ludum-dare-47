@@ -4,28 +4,28 @@
 [RequireComponent(typeof(CharacterController))]
 public class CreatureController : MonoBehaviour
 {
-    [SerializeField] public float speed = 10;
-    [SerializeField]
+    public float speed = 10;
     public float jumpForce = 5;
-    [SerializeField]
     public Vector3 gravity = new Vector3(0, -10, 0);
-
-    [SerializeField] public Vector3 cameraOffset = new Vector3(0, 10, 0);
-    [SerializeField]
+    public Vector3 cameraOffset = new Vector3(0, 10, 0);
     public float rotationSpeed = 270f;
-
+    public float dashCooldown = 1f;
+    public float dashAcceleration = 200f;
+    
     private Gun gun;
     private Animator animator;
     private CharacterController controller;
     private bool grounded;
     private Vector3 velocity;
     private Vector3 facing;
+    private float dashAccumulator;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         gun = GetComponentInChildren<Gun>();
+        dashAccumulator = dashCooldown;
         AcquireGun();
     }
 
@@ -34,59 +34,77 @@ public class CreatureController : MonoBehaviour
         gun.gunEnabled = true;
     }
 
+    private bool CanDash() => dashAccumulator >= dashCooldown;
+
+    void Dash()
+    {
+        if (CanDash())
+        {
+            velocity += transform.forward * dashAcceleration;
+            dashAccumulator = 0;
+        }
+    }
+    
     void Update()
     {
-        if (GameManager.Instance.IsPlayerControllerEnabled)
+		if (GameManager.Instance.IsPlayerControllerEnabled)
         {
-            var input = Vector3.zero;
-            var x = Input.GetAxisRaw("Horizontal");
-            var y = Input.GetAxisRaw("Vertical");
+	        dashAccumulator += Time.deltaTime;
+        
+	        var input = Vector3.zero;
+	        var x = Input.GetAxisRaw("Horizontal");
+	        var y = Input.GetAxisRaw("Vertical");
 
-            input.x = x;
-            input.z = y;
-            input = input.normalized;
+	        input.x = x;
+	        input.z = y;
+	        input = input.normalized;
+        
+	        var damping = speed * 3;
 
-            var damping = speed * 3;
+	        velocity.x = Mathf.Lerp(velocity.x, input.x * speed, damping * Time.deltaTime);
+	        velocity.z = Mathf.Lerp(velocity.z, input.z * speed, damping * Time.deltaTime);
 
-            velocity.x = Mathf.Lerp(velocity.x, input.x * speed, damping * Time.deltaTime);
-            velocity.z = Mathf.Lerp(velocity.z, input.z * speed, damping * Time.deltaTime);
+	        if (Input.GetButtonDown("Fire1") && gun != null)
+	        {
+	            gun.Trigger();
+	        }
 
-            if (Input.GetButtonDown("Fire1") && gun != null)
-            {
-                gun.Trigger();
-            }
+	        if (Input.GetButtonDown("Jump"))
+	        {
+	            Dash();
+	        }
+        
+	        if (!controller.isGrounded)
+	        {
+	            velocity += gravity * Time.deltaTime;
+        
+	            if (velocity.y < 0)
+	            {
+	                velocity.y -= (50 * Time.deltaTime);
+	            }
+	        }
 
-            if (!controller.isGrounded)
-            {
-                velocity += gravity * Time.deltaTime;
+	        // animator.SetBool("jump", !controller.isGrounded);
+	        // animator.SetFloat("vx", input.x);
+	        // animator.SetFloat("vy", input.z);
 
-                if (velocity.y < 0)
-                {
-                    velocity.y -= (50 * Time.deltaTime);
-                }
-            }
+	        controller.Move(velocity * Time.deltaTime);
+        
+	        var pos = transform.position;
+	        var mousePos = Input.mousePosition;
+	        var playerPos = Camera.main.WorldToScreenPoint(pos);
+        
+	        mousePos.x = mousePos.x - playerPos.x;
+	        mousePos.y = mousePos.y - playerPos.y;
+        
+	        var angle = Mathf.Atan2(mousePos.x, mousePos.y) * Mathf.Rad2Deg;
+	        var rotation = Quaternion.Euler(Vector3.up * angle);
 
-            // animator.SetBool("jump", !controller.isGrounded);
-            // animator.SetFloat("vx", input.x);
-            // animator.SetFloat("vy", input.z);
+	        transform.rotation = Quaternion.Slerp(transform.rotation, rotation,
+	            rotationSpeed * Mathf.Deg2Rad * Time.deltaTime);
 
-            controller.Move(velocity * Time.deltaTime);
-
-            var pos = transform.position;
-            var mousePos = Input.mousePosition;
-            var playerPos = Camera.main.WorldToScreenPoint(pos);
-
-            mousePos.x = mousePos.x - playerPos.x;
-            mousePos.y = mousePos.y - playerPos.y;
-
-            var angle = Mathf.Atan2(mousePos.x, mousePos.y) * Mathf.Rad2Deg;
-            var rotation = Quaternion.Euler(Vector3.up * angle);
-
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation,
-                rotationSpeed * Mathf.Deg2Rad * Time.deltaTime);
-
-            Camera.main.transform.position = pos + cameraOffset;
-        }
+	        Camera.main.transform.position = pos + cameraOffset;
+		}
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
