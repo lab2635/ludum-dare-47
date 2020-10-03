@@ -357,3 +357,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818d797824807284a867511f5ce77a42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteract: 1
+  cooldown: 0
+  proxies: []
+  holdTime: 0
+  objectName: object
+  activeTemplate: activate {0}
+  inactiveTemplate: deactivate {0}
+  toggled: 0

@@ -1,5 +1,6 @@
 ﻿using Doozy.Engine.UI;
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,8 @@ public class GameManager : SingletonBehaviour<GameManager>
 {
     public string TitleScene;
     public string MainGame;
+    public UIView TimerView;
+    public TMP_Text TimerText;
     // public UICanvas LoseScreen;
     // public UICanvas WinScreen;
 
@@ -49,6 +52,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     {
         this.IsPlayerControllerEnabled = true;
         this.TimeRemaining = this.TimeToReset;
+        this.TimerView.Show();
         // this.LoseScreen.gameObject.SetActive(false);
         // SceneManager.LoadScene(this.MainGame);
     }
@@ -109,8 +113,16 @@ public class GameManager : SingletonBehaviour<GameManager>
         this.TimeRemaining -= Time.deltaTime;
         this.TimeRemaining = Mathf.Clamp(this.TimeRemaining, 0, this.TimeToReset);
 
-        if(this.TimeRemaining <= 0 && !this.NeverLose && !this.alreadyDead)
+        if(this.TimeRemaining > 0)
         {
+            float seconds = Mathf.FloorToInt(this.TimeRemaining % 60);
+            float milliseconds = 100 - ((int)(Time.timeSinceLevelLoad * 100f) % 100);
+
+            this.TimerText.text = String.Format("{0:00}:{1:00}", seconds, milliseconds);
+        }
+        else if (this.TimeRemaining <= 0 && !this.NeverLose && !this.alreadyDead)
+        {
+            this.TimerText.text = "00:00";
             this.IsPlayerControllerEnabled = false;
             //GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerKiller>().KillPlayer();
             this.alreadyDead = true;
