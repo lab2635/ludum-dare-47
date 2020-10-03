@@ -1035,6 +1035,7 @@ GameObject:
   - component: {fileID: 7323839230909906728}
   - component: {fileID: 7323839230909906743}
   - component: {fileID: 7323839230909906729}
+  - component: {fileID: 5646192412411152615}
   m_Layer: 0
   m_Name: Creature
   m_TagString: Untagged
@@ -1110,9 +1111,26 @@ MonoBehaviour:
   speed: 10
   jumpForce: 5
   gravity: {x: 0, y: -10, z: 0}
-  body: {fileID: 7886484372483278917}
   cameraDistance: 23
   rotationSpeed: 270
+--- !u!114 &5646192412411152615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593888296310100348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb2fedeffa0c634ea29d386f9a7c9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionDistance: 2
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  player: {fileID: 7323839230909906729}
+  interactionText: {fileID: 0}
 --- !u!1 &7698789679939129689
 GameObject:
   m_ObjectHideFlags: 0
