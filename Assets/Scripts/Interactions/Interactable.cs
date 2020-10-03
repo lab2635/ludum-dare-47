@@ -33,8 +33,6 @@ public abstract class Interactable : MonoBehaviour
 
     public void SetSelecting(bool value)
     {
-        Debug.Log($"select interactable {value}");
-
         foreach (var child in GetComponentsInChildren<Transform>(true))
         {
             if (value)

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4950281319662566764}
   - component: {fileID: 4950281319662566767}
   - component: {fileID: 4950281319662566766}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Icosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2267,7 +2267,7 @@ GameObject:
   - component: {fileID: 5694977898404104510}
   - component: {fileID: 3432773884896224836}
   - component: {fileID: 2988494019422790994}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3061,7 +3061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 842846297213339474}
   - component: {fileID: 300386868615281490}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
