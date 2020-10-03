@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1095726945953599600}
   - component: {fileID: 4070859751482108958}
-  - component: {fileID: 5966831982006076704}
+  - component: {fileID: 1398764665702270186}
   m_Layer: 11
   m_Name: BulletPlayer
   m_TagString: PlayerBullet
@@ -128,8 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 0}
   speed: 11
---- !u!136 &5966831982006076704
-CapsuleCollider:
+--- !u!135 &1398764665702270186
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -138,7 +138,6 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.25
-  m_Height: 2
-  m_Direction: 1
+  serializedVersion: 2
+  m_Radius: 0.3
   m_Center: {x: 0, y: 0, z: 0}

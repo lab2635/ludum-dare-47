@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Doozy.Engine.UI;
 
 public class InteractableDetector : MonoBehaviour
 {
     public CreatureController player;
-    public TMPro.TextMeshProUGUI interactionText;
 
-    private List<Interactable> interactables;
-    
-    void Start()
+    private Interactable previousInteractable;
+    private UIView interactionUI;
+	private List<Interactable> interactables;
+
+    private void Start()
     {
-        interactables = new List<Interactable>();
+        this.interactionUI = GameObject.FindGameObjectWithTag("InteractionUI").GetComponent<UIView>();
+		interactables = new List<Interactable>();
     }
 
     void Update()
@@ -82,9 +85,14 @@ public class InteractableDetector : MonoBehaviour
 
     private void SetInteractionText(string text)
     {
-        if (interactionText != null)
+        if (text == string.Empty)
         {
-            interactionText.text = text;
+            this.interactionUI.Hide();
+        }
+        else
+        {
+            this.interactionUI.Show();
+            this.interactionUI.GetComponentInChildren<TMPro.TMP_Text>().text = $"Press E to {text}";
         }
     }
 }

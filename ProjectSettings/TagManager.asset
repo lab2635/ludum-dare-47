@@ -9,6 +9,7 @@ TagManager:
   - PlayerBullet
   - InventoryUI
   - RespawnPoint
+  - InteractionUI
   layers:
   - Default
   - TransparentFX
