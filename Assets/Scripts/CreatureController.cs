@@ -8,8 +8,8 @@ public class CreatureController : MonoBehaviour
     public float jumpForce = 5;
     [SerializeField]
     public Vector3 gravity = new Vector3(0, -10, 0);
-    [SerializeField]
-    public float cameraDistance = 23f;
+
+    [SerializeField] public Vector3 cameraOffset = new Vector3(0, 10, 0);
     [SerializeField]
     public float rotationSpeed = 270f;
     
@@ -74,9 +74,7 @@ public class CreatureController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation,
             rotationSpeed * Mathf.Deg2Rad * Time.deltaTime);
 
-        pos.y = cameraDistance;
-        
-        Camera.main.transform.position = pos;
+        Camera.main.transform.position = pos + cameraOffset;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
