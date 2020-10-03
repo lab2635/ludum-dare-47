@@ -2,21 +2,10 @@
 
 public class InteractableDetector : MonoBehaviour
 {
-    public float interactionDistance = 2f;
-
     public CreatureController player;
     public TMPro.TextMeshProUGUI interactionText;
 
     private Interactable previousInteractable;
-
-    void Start()
-    {
-        var interactableCollider = gameObject.AddComponent<SphereCollider>();
-        interactableCollider.center = Vector3.zero;
-        interactableCollider.radius = interactionDistance;
-        interactableCollider.center = Vector3.up * 1.5f;
-        interactableCollider.isTrigger = true;
-    }
 
     void Update()
     {

@@ -5,15 +5,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Turret source;
+    public Gun source;
 
     [SerializeField] public float speed = 11f;
     
-    void Start()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         source.Hit(this, other);
@@ -21,6 +16,6 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        transform.position += transform.right * speed * Time.deltaTime;
+        transform.position += transform.forward * speed * Time.deltaTime;
     }
 }
