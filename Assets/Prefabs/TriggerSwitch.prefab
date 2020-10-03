@@ -108,6 +108,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f35a6719b60dec46ba08c72a4fdb7d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canInteract: 0
+  cooldown: 0
+  proxies: []
+  holdTime: 0
   enabled: 0
   triggered: 0
   autoReset: 0
