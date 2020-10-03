@@ -696,7 +696,12 @@ MonoBehaviour:
   cooldown: 0
   proxies: []
   holdTime: 0
+  objectName: Chest
+  activeTemplate: Open {0}
+  inactiveTemplate: 
+  toggled: 0
   Contents: 0
+  OpenRemotely: 0
 --- !u!65 &6851078303848255846
 BoxCollider:
   m_ObjectHideFlags: 0

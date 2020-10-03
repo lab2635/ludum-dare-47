@@ -49,6 +49,8 @@ public class Gun : MonoBehaviour
             bullets[i].speed = bulletSpeed;
             bullets[i].gameObject.SetActive(false);
         }
+
+        GameManager.OnReset += ResetState;
     }
 
     private IEnumerator Fire()
@@ -87,6 +89,15 @@ public class Gun : MonoBehaviour
         if (autoFire)
         {
             Trigger();
+        }
+    }
+
+    private void ResetState()
+    {
+        this.bulletIndex = 0;
+        for (var i = 0; i < bullets.Length; i++)
+        {
+            bullets[i].gameObject.SetActive(false);
         }
     }
 }
