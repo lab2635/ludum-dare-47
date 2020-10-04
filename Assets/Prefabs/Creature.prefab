@@ -655,7 +655,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5643384857557432515}
   - component: {fileID: 22519295068775643}
-  - component: {fileID: 7313138124886154509}
+  - component: {fileID: 1077868559977567713}
   m_Layer: 10
   m_Name: Interactions
   m_TagString: Untagged
@@ -690,8 +690,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7323839230909906729}
---- !u!135 &7313138124886154509
-SphereCollider:
+--- !u!65 &1077868559977567713
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -701,8 +701,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 2, y: 2.2, z: 2}
+  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!1 &5206706323395980242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,13 +1183,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2.2
-  m_Radius: 0.5
+  m_Height: 2.32
+  m_Radius: 0.18
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1.1, z: 0}
+  m_Center: {x: 0, y: 1.15, z: 0}
 --- !u!95 &7323839230909906743
 Animator:
   serializedVersion: 3

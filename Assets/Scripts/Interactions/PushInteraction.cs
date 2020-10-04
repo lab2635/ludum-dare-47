@@ -27,8 +27,8 @@ public class PushInteraction : Interactable
     protected override void OnInteract(ref InteractionEvent ev)
     {
         var playerPosition = ev.player.transform.position;
-        var direction = transform.position - playerPosition;
-        Push(direction.normalized);
+        var pushDirection = transform.position - playerPosition;
+        Push(pushDirection.normalized);
     }
 
     private Vector3 SnapToCardinalDirection(Vector3 v)

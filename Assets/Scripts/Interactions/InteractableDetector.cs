@@ -49,20 +49,20 @@ public class InteractableDetector : MonoBehaviour
         
         if (interactable != null && interactable.CanPlayerInteract(player))
         {
-            interactables.Add(interactable);
+            interactables.Add(interactable);    
             interactable.SetSelecting(true);
+            SetInteractionText(interactable.description);
         }
     }
 
-    // private void OnTriggerStay(Collider other)
-    // {
-    //     var interactable = other.gameObject.GetComponent<Interactable>();
-    //     
-    //     if (interactable != null && interactable.CanInteract(player))
-    //     {
-    //         SetInteractionText(interactable.description);    
-    //     }
-    // }
+    private void OnTriggerStay(Collider other)
+    {
+        if (interactables.Count > 0)
+        {
+            var lastInteractable = interactables[interactables.Count - 1];
+            SetInteractionText(lastInteractable.description);
+        }
+    }
 
     void OnTriggerExit(Collider other)
     {
