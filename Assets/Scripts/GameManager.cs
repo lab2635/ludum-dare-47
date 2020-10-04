@@ -25,7 +25,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     public delegate void ResetAction();
     public static event ResetAction OnReset;
 
-    public bool[] CheckpointList = new bool[4];
+    public bool[] CheckpointList = new bool[7];
     public int LoopCounter;
 
     private bool isPlaying;
@@ -166,5 +166,9 @@ public enum Checkpoints
 {
     None,
     GunRoomComplete,
-
+    Room1Complete,
+    Room2Complete,
+    Room34Complete,
+    Room5Complete,
+    RoomFinalComplete
 }

@@ -10,7 +10,7 @@ public class ChestInteractable : ToggleInteraction
     public Checkpoints RelatedCheckpoint;
 
     private Animator animator;
-    private bool chestOpened;
+    private bool chestUnlocked;
     private bool contentsTaken;
 
     // Start is called before the first frame update
@@ -19,22 +19,27 @@ public class ChestInteractable : ToggleInteraction
         base.OnStart();
         this.animator = this.gameObject.GetComponent<Animator>();
         GameManager.OnReset += ResetState;
+
+        if(this.RequiredItem == InventoryItems.None)
+        {
+            this.UnlockChest();
+        }
     }
 
     protected override void OnInteract(ref InteractionEvent ev)
     {
         if (this.RequiredItem == InventoryItems.Remote)
         {
-            if (this.chestOpened && !this.contentsTaken)
+            if (this.chestUnlocked && !this.contentsTaken)
             {
-                this.contentsTaken = true;
+                this.OpenChest();
                 ev.player.GetComponent<InventoryManager>().GetItem(this.Contents);
                 base.canInteract = false;
             }
-            else if (!this.chestOpened && !this.contentsTaken && ev.proxied)
+            else if (!this.chestUnlocked && !this.contentsTaken && ev.proxied)
             {
                 base.OnInteract(ref ev);
-                this.OpenChest();
+                this.UnlockChest();
             }
         }
         else if(!this.contentsTaken && 
@@ -42,20 +47,25 @@ public class ChestInteractable : ToggleInteraction
         {
             this.OpenChest();
             ev.player.GetComponent<InventoryManager>().GetItem(this.Contents);
-            this.contentsTaken = true;
             base.canInteract = false;
         }
     }
 
+    public void UnlockChest()
+    {
+        this.chestUnlocked = true;
+        this.animator.SetTrigger("UnlockChest");
+    }
+
     public void OpenChest()
     {
-        this.chestOpened = true;
+        this.contentsTaken = true;
         this.animator.SetTrigger("OpenChest");
     }
 
     public void CloseChest()
     {
-        this.chestOpened = false;
+        this.chestUnlocked = false;
         this.animator.SetTrigger("CloseChest");
     }
 
@@ -63,9 +73,13 @@ public class ChestInteractable : ToggleInteraction
     {
         if (!GameManager.Instance.CheckpointList[(int)this.RelatedCheckpoint])
         {
-            if (this.chestOpened)
+            if (this.chestUnlocked && this.RequiredItem != InventoryItems.None)
             {
                 this.CloseChest();
+            }
+            else if(this.contentsTaken && this.RequiredItem == InventoryItems.None)
+            {
+                this.UnlockChest();
             }
             this.contentsTaken = false;
             base.canInteract = true;

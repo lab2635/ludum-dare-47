@@ -32,16 +32,16 @@ public class InventoryManager : MonoBehaviour
     {
         switch (contents)
         {
-            case InventoryItems.Key1:
-                this.Inventory.Add(InventoryItems.Key1);
+            case InventoryItems.SpawnRoomKey:
+                this.Inventory.Add(InventoryItems.SpawnRoomKey);
                 this.Key1View.Show();
                 break;
-            case InventoryItems.Key2:
-                this.Inventory.Add(InventoryItems.Key2);
+            case InventoryItems.Room1RewardKey:
+                this.Inventory.Add(InventoryItems.Room1RewardKey);
                 this.Key2View.Show();
                 break;
-            case InventoryItems.Key3:
-                this.Inventory.Add(InventoryItems.Key3);
+            case InventoryItems.Room1Reward:
+                this.Inventory.Add(InventoryItems.Room1Reward);
                 this.Key3View.Show();
                 break;
             case InventoryItems.Gun:
@@ -56,16 +56,16 @@ public class InventoryManager : MonoBehaviour
     {
         switch (contents)
         {
-            case InventoryItems.Key1:
-                this.Inventory.Remove(InventoryItems.Key1);
+            case InventoryItems.SpawnRoomKey:
+                this.Inventory.Remove(InventoryItems.SpawnRoomKey);
                 this.Key1View.Hide();
                 break;
-            case InventoryItems.Key2:
-                this.Inventory.Remove(InventoryItems.Key2);
+            case InventoryItems.Room1RewardKey:
+                this.Inventory.Remove(InventoryItems.Room1RewardKey);
                 this.Key2View.Hide();
                 break;
-            case InventoryItems.Key3:
-                this.Inventory.Remove(InventoryItems.Key3);
+            case InventoryItems.Room1Reward:
+                this.Inventory.Remove(InventoryItems.Room1Reward);
                 this.Key3View.Hide();
                 break;
             default: break;
@@ -78,15 +78,26 @@ public class InventoryManager : MonoBehaviour
         this.Key1View.Hide();
         this.Key2View.Hide();
         this.Key3View.Hide();
+
+        if (GameManager.Instance.CheckpointList[(int)Checkpoints.GunRoomComplete])
+        {
+            this.GetItem(InventoryItems.Gun);
+        }
     }
 }
 
 public enum InventoryItems
 {
     None,
-    Key1,
-    Key2,
-    Key3,
+    SpawnRoomKey,
+    Room1RewardKey,
+    Room1Reward,
     Remote,
-    Gun
+    Gun,
+    Room2Reward,
+    Room4RewardKey,
+    Room4Reward,
+    Room5Reward,
+    Room6DoorKey,
+    Room6ExitKey
 }
