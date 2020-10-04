@@ -21,6 +21,7 @@ public class CreatureController : MonoBehaviour
     private Vector3 velocity;
     private Vector3 facing;
     private float dashAccumulator;
+    private Vector3 moveDirection = Vector3.zero;
 
     private void Start()
     {
@@ -111,7 +112,24 @@ public class CreatureController : MonoBehaviour
 	            rotationSpeed * Mathf.Deg2Rad * Time.deltaTime);
 
 	        Camera.main.transform.position = pos + cameraOffset;
+
+            this.Animate(x, y);
 		}
+    }
+
+    private void Animate(float x, float y)
+    {
+        moveDirection = new Vector3(x, 0, y);
+
+        if (moveDirection.magnitude > 1.0f)
+        {
+            moveDirection = moveDirection.normalized;
+        }
+
+        moveDirection = transform.InverseTransformDirection(moveDirection);
+
+        animator.SetFloat("X", moveDirection.x);//, 0.05f, Time.deltaTime);
+        animator.SetFloat("Y", moveDirection.z);//, 0.05f, Time.deltaTime);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
