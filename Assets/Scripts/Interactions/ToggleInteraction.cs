@@ -22,6 +22,7 @@
     protected override void OnInteract(ref InteractionEvent ev)
     {
          toggled = !toggled;
+         base.OnInteract(ref ev);
     }
 }
 

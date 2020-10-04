@@ -28,7 +28,21 @@ public abstract class Interactable : MonoBehaviour
 
     protected virtual void OnInteract(ref InteractionEvent ev)
     {
-        Debug.Log("undefined interaction");
+        if (proxies != null)
+        {
+            foreach (var proxy in proxies)
+            {
+                var proxyEvent = new InteractionEvent
+                {
+                    proxied = true,
+                    sender = this,
+                    player = ev.player,
+                    timestamp = ev.timestamp
+                };
+
+                proxy.Interact(ref proxyEvent);
+            }
+        }
     }
 
     public void SetSelecting(bool value)
@@ -70,22 +84,6 @@ public abstract class Interactable : MonoBehaviour
         OnInteract(ref ev);
 
         nextInteraction = Time.time + cooldown;
-
-        if (proxies != null)
-        {
-            foreach (var proxy in proxies)
-            {
-                var proxyEvent = new InteractionEvent
-                {
-                    proxied = true,
-                    sender = this,
-                    player = ev.player,
-                    timestamp = ev.timestamp
-                };
-
-                proxy.Interact(ref proxyEvent);
-            }
-        }
     }
 }
 

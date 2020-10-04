@@ -39,7 +39,10 @@ public class CreatureController : MonoBehaviour
 
     public void AcquireGun()
     {
-        gun.gunEnabled = true;
+	    if (gun == null) 
+			gun = GetComponentInChildren<Gun>();
+	    
+	    gun.gunEnabled = true;
     }
 
     private bool CanDash() => dashAccumulator >= dashCooldown;
