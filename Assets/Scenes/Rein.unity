@@ -559,6 +559,43 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1886950 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 883364500562611904, guid: 0b050554cac85d24987d117421ecfe86, type: 3}
+  m_PrefabInstance: {fileID: 135182722}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818d797824807284a867511f5ce77a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2714611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 59769d32b19b66240bfcc8cba48503d9, type: 3}
+  m_PrefabInstance: {fileID: 1629367711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2714612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9567cfde6131bd143baf827b93c261a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteract: 1
+  cooldown: 0
+  proxies:
+  - {fileID: 579273315}
+  holdTime: 0
+  ActivateCheckpoint: 1
+  CheckpointToActivate: 3
+  requiredItem: 5
+  activationText: activate checkpoint
 --- !u!1001 &3193777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13984,7 +14021,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh177992
+  m_Name: pb_Mesh303390
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -26299,6 +26336,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5d9402bfee95952469a8c33793acf991, type: 3}
   m_PrefabInstance: {fileID: 576110839}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &579273315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 883364500562611904, guid: 0b050554cac85d24987d117421ecfe86, type: 3}
+  m_PrefabInstance: {fileID: 234953083}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818d797824807284a867511f5ce77a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &583979734
 Mesh:
   m_ObjectHideFlags: 0
@@ -34692,7 +34740,7 @@ MonoBehaviour:
   TimerView: {fileID: 1662189907}
   TimerText: {fileID: 1176192540}
   SkipTitle: 1
-  NeverLose: 0
+  NeverLose: 1
   IsPlayerControllerEnabled: 0
   TimeRemaining: 0
   TimeToReset: 30
@@ -42572,6 +42620,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &888009746 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 883364500562611904, guid: 0b050554cac85d24987d117421ecfe86, type: 3}
+  m_PrefabInstance: {fileID: 1058769984}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818d797824807284a867511f5ce77a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &891643806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57354,6 +57413,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1213490713 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: f369dff994faa4a409c680ff92691aa5, type: 3}
+  m_PrefabInstance: {fileID: 2012808085}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1213490714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213490713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9567cfde6131bd143baf827b93c261a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteract: 1
+  cooldown: 0
+  proxies:
+  - {fileID: 888009746}
+  holdTime: 0
+  ActivateCheckpoint: 1
+  CheckpointToActivate: 4
+  requiredItem: 5
+  activationText: activate checkpoint
 --- !u!43 &1217677942
 Mesh:
   m_ObjectHideFlags: 0
@@ -61789,6 +61874,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1281712574 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 883364500562611904, guid: 0b050554cac85d24987d117421ecfe86, type: 3}
+  m_PrefabInstance: {fileID: 1724850619}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818d797824807284a867511f5ce77a42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1285631961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84451,7 +84547,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 6337645087024706206, guid: bad10332fa45043689dad79f7c19ca30, type: 3}
+      propertyPath: proxies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337645087024706206, guid: bad10332fa45043689dad79f7c19ca30, type: 3}
+      propertyPath: CheckpointToActivate
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337645087024706206, guid: bad10332fa45043689dad79f7c19ca30, type: 3}
+      propertyPath: requiredItem
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337645087024706206, guid: bad10332fa45043689dad79f7c19ca30, type: 3}
+      propertyPath: proxies.Array.data[0]
+      value: 
+      objectReference: {fileID: 1886950}
+    - target: {fileID: 6337645087024706206, guid: bad10332fa45043689dad79f7c19ca30, type: 3}
+      propertyPath: proxies.Array.data[1]
+      value: 
+      objectReference: {fileID: 1281712574}
+    m_RemovedComponents:
+    - {fileID: 762341158322833105, guid: bad10332fa45043689dad79f7c19ca30, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bad10332fa45043689dad79f7c19ca30, type: 3}
 --- !u!4 &1658995291 stripped
 Transform:
@@ -89029,7 +89146,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 883364500562611904, guid: 0b050554cac85d24987d117421ecfe86, type: 3}
       propertyPath: RequiredItem
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 883364500562611904, guid: 0b050554cac85d24987d117421ecfe86, type: 3}
       propertyPath: RelatedCheckpoint
@@ -94496,6 +94613,32 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 842846297213339474, guid: dbcc3a066fe73664b9ce012c97e87e04, type: 3}
   m_PrefabInstance: {fileID: 1825487414}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1828432754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 153e6961c53149c4aa23d42992d85cbe, type: 3}
+  m_PrefabInstance: {fileID: 2135350455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1828432755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1828432754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9567cfde6131bd143baf827b93c261a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteract: 1
+  cooldown: 0
+  proxies:
+  - {fileID: 515632799}
+  holdTime: 0
+  ActivateCheckpoint: 1
+  CheckpointToActivate: 2
+  requiredItem: 5
+  activationText: activate checkpoint
 --- !u!1 &1829268327
 GameObject:
   m_ObjectHideFlags: 0
