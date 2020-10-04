@@ -11,12 +11,12 @@ public class OrderPuzzleInteraction : Interactable
     
     protected override void OnStart()
     {
-        base.OnStart();
         state = new Stack<PuzzleButton>();
         var meshRenderer = GetComponent<MeshRenderer>();
         indicatorMaterial = Instantiate(meshRenderer.material);
         meshRenderer.material = indicatorMaterial;
         ResetPuzzle();
+        base.OnStart();
     }
 
     private bool HasWon => state.Count == 0;

@@ -7311,6 +7311,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TriggerSwitch
       objectReference: {fileID: 0}
+    - target: {fileID: 7831239307994720652, guid: 1e003e249d0b41340b7d24e8624939d8, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7831239307994720653, guid: 1e003e249d0b41340b7d24e8624939d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 24

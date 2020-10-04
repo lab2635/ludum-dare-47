@@ -14,6 +14,7 @@ public class PuzzleButton : Interactable
     public Color color;
     
     public override string description => !active ? "activate button" : string.Empty;
+    public override bool CanPlayerInteract(CreatureController player) => !active;
 
     protected override void OnStart()
     {
