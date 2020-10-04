@@ -114,6 +114,8 @@ public class GameManager : SingletonBehaviour<GameManager>
         this.CheckpointList[(int)checkpoint] = true;
     }
 
+    public bool HasCheckpoint(Checkpoints checkpoint) => CheckpointList[(int) checkpoint];
+
     private void ResetGameState()
     {
         this.startTime = Time.deltaTime;
