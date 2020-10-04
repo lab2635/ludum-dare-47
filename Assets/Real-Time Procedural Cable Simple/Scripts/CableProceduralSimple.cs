@@ -37,19 +37,17 @@ public class CableProceduralSimple : MonoBehaviour
 	void Start () 
 	{
 		line = GetComponent<LineRenderer>();
-
-		if (!endPointTransform)
-		{
-			Debug.LogError("No Endpoint Transform assigned to Cable_Procedural component attached to " + gameObject.name);
-			return;
-		}
-
 		UpdatePoints();
-
 	}
 
 	void UpdatePoints()
 	{
+		if (!endPointTransform)
+		{
+			//  Debug.LogError("No Endpoint Transform assigned to Cable_Procedural component attached to " + gameObject.name);
+			return;
+		}
+
 		// Get direction Vector.
 		vectorFromStartToEnd = endPointTransform.position - transform.position;
 		// Setting the Start object to look at the end will be used for making the wind be perpendicular to the cable later.
@@ -67,18 +65,18 @@ public class CableProceduralSimple : MonoBehaviour
 	void Update ()
 	{
 		UpdatePoints();
-		Draw();
+	    Draw();
 	}
 
-
+	public void Clear()
+	{
+		pointsInLineRenderer = 0;
+		line.positionCount = 0;
+		endPointTransform = null;
+	}
 
 	void Draw()
 	{
-		if (!endPointTransform)
-		{
-			return;
-		}
-
 		// What point is being calculated
 		int i = 0;
 
