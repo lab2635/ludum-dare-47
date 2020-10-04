@@ -25,6 +25,11 @@ public class InventoryManager : MonoBehaviour
         this.Key2View.Hide();
         this.Key3View.Hide();
 
+        if (GameManager.Instance.CheckpointList[(int)Checkpoints.GunRoomComplete])
+        {
+            this.GetItem(InventoryItems.Gun);
+        }
+
         GameManager.OnReset += ResetState;
     }
 
