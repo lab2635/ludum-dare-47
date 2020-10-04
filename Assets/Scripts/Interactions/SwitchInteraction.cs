@@ -28,9 +28,9 @@ public class SwitchInteraction : MonoBehaviour
 
                 this.interactable = this.gameObject.GetComponent<CheckpointInteractable>();
                 this.interactable.Interact(ref interactionEvent);
+
+                this.interactable.canInteract = false;
             }
         }
     }
-
-    
 }
