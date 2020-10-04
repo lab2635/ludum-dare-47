@@ -14,6 +14,7 @@
 
     protected override void OnStart()
     {
+        base.OnStart();
         activeDescription = string.Format(activeTemplate ?? string.Empty, objectName);
         inactiveDescription = string.Format(inactiveTemplate ?? string.Empty, objectName);
     }

@@ -22,9 +22,12 @@ public class Bullet : MonoBehaviour
 
     public void Explode()
     {
+        var bulletContainer = GameObject.FindGameObjectWithTag("Bullets");
+        
         Detonator dTemp = (Detonator)this.DetonatorPrefab.GetComponent("Detonator");
-
-        GameObject exp = (GameObject)Instantiate(this.DetonatorPrefab, this.transform.position, Quaternion.identity);
+        GameObject exp = (GameObject)Instantiate(this.DetonatorPrefab, this.
+            transform.position, Quaternion.identity, bulletContainer.transform);
+        
         dTemp = (Detonator)exp.GetComponent("Detonator");
         dTemp.detail = 1.0f;
 

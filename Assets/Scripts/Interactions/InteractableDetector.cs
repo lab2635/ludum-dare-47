@@ -60,7 +60,15 @@ public class InteractableDetector : MonoBehaviour
         if (interactables.Count > 0)
         {
             var lastInteractable = interactables[interactables.Count - 1];
-            SetInteractionText(lastInteractable.description);
+            
+            if (lastInteractable.CanPlayerInteract(player))
+            {
+                SetInteractionText(lastInteractable.description);
+            }
+            else
+            {
+                SetInteractionText(string.Empty);
+            }
         }
     }
 

@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    private GameObject bulletContainer;
     private Bullet[] bullets;
     private float lastTriggerAccumulator = 0f;
     private int bulletIndex;
     private bool firing = false;
     private Collider parentCollider;
-    
+
+    private const string BulletContainerTag = "Bullets";
     private const string PlayerTag = "Player";
     
     public bool gunEnabled = true;
@@ -40,13 +42,22 @@ public class Gun : MonoBehaviour
     
     void Start()
     {
+        bulletContainer = GameObject.FindGameObjectWithTag(BulletContainerTag);
+
+        if (bulletContainer == null)
+        {
+            bulletContainer = new GameObject("Bullet Container");
+            bulletContainer.transform.position = Vector3.zero;
+            bulletContainer.tag = BulletContainerTag;
+        }
+        
         bullets = new Bullet[20];
         lastTriggerAccumulator = triggerRate;
         parentCollider = GetComponentInParent<Collider>();
         
         for (var i = 0; i < bullets.Length; i++)
         {
-            bullets[i] = Instantiate(bulletPrefab);
+            bullets[i] = Instantiate(bulletPrefab, bulletContainer.transform);
             bullets[i].source = this;
             bullets[i].speed = bulletSpeed;
             bullets[i].gameObject.SetActive(false);

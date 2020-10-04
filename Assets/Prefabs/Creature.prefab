@@ -1228,6 +1228,7 @@ MonoBehaviour:
   rotationSpeed: 270
   dashCooldown: 1
   dashAcceleration: 200
+  handTransform: {fileID: 242456558581755771}
 --- !u!114 &2559618258591784912
 MonoBehaviour:
   m_ObjectHideFlags: 0
