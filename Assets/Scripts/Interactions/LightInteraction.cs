@@ -30,7 +30,8 @@ public class LightInteraction : ToggleInteraction
         
         bulbRenderer = GetComponent<MeshRenderer>();
         bulbMaterial = new Material(bulbRenderer.sharedMaterial);
-        bulbMaterial.color = bulbColor;
+        bulbMaterial.SetColor("_Color", bulbColor);
+        bulbMaterial.SetColor("_EmissionColor", Color.black);
         bulbRenderer.material = bulbMaterial;
         
         attachedLight = gameObject.GetComponent<Light>();
@@ -50,7 +51,7 @@ public class LightInteraction : ToggleInteraction
     {
         var targetIntensity = on ? intensity : 0f;
 
-        if (pulse)
+        if (on && pulse)
         {
             var frequency = 1f / pulsesPerSecond;
             var alpha = 0.5f * (1 + Mathf.Sin(2 * Mathf.PI * frequency * Time.time));

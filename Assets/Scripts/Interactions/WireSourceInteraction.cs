@@ -12,6 +12,8 @@ public class WireSourceInteraction : Interactable
     private bool grabbed = false;
     
     public Color color;
+    public int slot;
+    public WireSinkInteraction sink;
 
     protected override void OnStart()
     {
@@ -25,11 +27,27 @@ public class WireSourceInteraction : Interactable
         cable = gameObject.GetComponent<CableProceduralSimple>();
     }
 
+    public void Reset()
+    {
+        // if (sink != null)
+        //     sink.Reset();
+        //
+        // sink = null;
+    }
+
     protected override void OnInteract(ref InteractionEvent ev)
     {
-        if (!grabbed)
+        if (ev.player.attachment == gameObject)
         {
             grabbed = false;
+            cable.Clear();
+            ev.player.attachment = null;
+            return;
+        }
+        
+        if (ev.player.attachment == null)
+        {
+            grabbed = true;
             ev.player.attachment = gameObject;
             cable.endPointTransform = ev.player.handTransform;
         }
