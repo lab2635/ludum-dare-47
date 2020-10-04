@@ -1231,6 +1231,8 @@ MonoBehaviour:
   dashAcceleration: 200
   handTransform: {fileID: 242456558581755771}
   attachment: {fileID: 0}
+  RunningLoopSFX: {fileID: 8300000, guid: 0ae4ee84e932abc4e8f8316e37b35b66, type: 3}
+  DashSFX: {fileID: 8300000, guid: 735ae2995b5cea44cbbbd12fc6c6113e, type: 3}
 --- !u!114 &2559618258591784912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1259,6 +1261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DetonatorPrefab: {fileID: 100000, guid: 809320482fb694b6e8149a226202b86a, type: 3}
+  DeathSFX: {fileID: 8300000, guid: bb5b4093a18567046b77846741ca3318, type: 3}
 --- !u!54 &3187227102819707538
 Rigidbody:
   m_ObjectHideFlags: 0
