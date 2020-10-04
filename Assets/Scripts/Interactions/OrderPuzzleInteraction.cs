@@ -12,9 +12,9 @@ public class OrderPuzzleInteraction : Interactable
     protected override void OnStart()
     {
         state = new Stack<PuzzleButton>();
-        var meshRenderer = GetComponent<MeshRenderer>();
-        indicatorMaterial = Instantiate(meshRenderer.material);
-        meshRenderer.material = indicatorMaterial;
+        // var meshRenderer = GetComponent<MeshRenderer>();
+        // indicatorMaterial = Instantiate(meshRenderer.material);
+        // meshRenderer.material = indicatorMaterial;
         ResetPuzzle();
         base.OnStart();
     }
@@ -26,6 +26,7 @@ public class OrderPuzzleInteraction : Interactable
         if (HasWon)
         {
             if (debug) ResetPuzzle();
+            base.OnInteract(ref ev);
             return;
         }
         
@@ -48,18 +49,19 @@ public class OrderPuzzleInteraction : Interactable
 
     private void Won()
     {
-        indicatorMaterial.color = Color.yellow;
+        // indicatorMaterial.color = Color.yellow;
+        Interact(gameObject);
     }
 
     private void Lost()
     {
-        indicatorMaterial.color = Color.white;
+        // indicatorMaterial.color = Color.white;
         ResetPuzzle();
     }
 
     private void ResetPuzzle()
     {
-        indicatorMaterial.color = Color.white;
+        // indicatorMaterial.color = Color.white;
         state.Clear();
         
         for (var i = buttons.Length - 1; i >= 0; i--)

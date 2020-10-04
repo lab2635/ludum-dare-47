@@ -28,6 +28,7 @@ public class PuzzleButton : Interactable
     {
         active = true;
         buttonMaterial.color = Color.white;
+        base.OnInteract(ref ev);
     }
 
     public void Reset()
