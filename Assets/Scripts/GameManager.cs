@@ -25,6 +25,9 @@ public class GameManager : SingletonBehaviour<GameManager>
     public delegate void ResetAction();
     public static event ResetAction OnReset;
 
+    public bool[] CheckpointList = new bool[4];
+    public int LoopCounter;
+
     private bool isPlaying;
     private float startTime;
 
@@ -54,6 +57,8 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     public void StartGame()
     {
+        this.LoopCounter = 0;
+        //this.CheckpointList = new bool[4];
         this.IsPlayerControllerEnabled = true;
         this.TimeRemaining = this.TimeToReset;
         this.TimerView.Show();
@@ -104,6 +109,11 @@ public class GameManager : SingletonBehaviour<GameManager>
         }
     }
 
+    public void ActivateCheckpoint(Checkpoints checkpoint)
+    {
+        this.CheckpointList[(int)checkpoint] = true;
+    }
+
     private void ResetGameState()
     {
         this.startTime = Time.deltaTime;
@@ -124,26 +134,37 @@ public class GameManager : SingletonBehaviour<GameManager>
 
             this.TimerText.text = String.Format("{0:00}:{1:00}", seconds, milliseconds);
         }
-        else if (this.TimeRemaining <= 0 && !this.NeverLose && !this.alreadyDead)
+        else if (this.TimeRemaining <= 0 && !this.alreadyDead)
         {
             this.TimerText.text = "00:00";
             this.KillRespawnPlayer();
         }
     }
 
-    public async void KillRespawnPlayer()
+    public void KillRespawnPlayer()
     {
-        this.IsPlayerControllerEnabled = false;
-        this.alreadyDead = true;
+        if (!this.NeverLose)
+        {
+            this.LoopCounter++;
 
-        PlayerDeathLoop pdl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDeathLoop>();
-        await pdl.KillPlayer();
+            this.IsPlayerControllerEnabled = false;
+            this.alreadyDead = true;
 
-        OnReset();
+            PlayerDeathLoop pdl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDeathLoop>();
+            pdl.KillPlayer();
 
-        await pdl.RespawnPlayer();
-        this.IsPlayerControllerEnabled = true;
-        this.alreadyDead = false;
-        this.TimeRemaining = this.TimeToReset;
+            OnReset();
+
+            Action action = () => { this.IsPlayerControllerEnabled = true; this.alreadyDead = false; this.TimeRemaining = this.TimeToReset; };
+
+            StartCoroutine(pdl.RespawnPlayer(action));
+        }
     }
+}
+
+public enum Checkpoints
+{
+    None,
+    GunRoomComplete,
+
 }

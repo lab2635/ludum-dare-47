@@ -21,12 +21,16 @@ public class Gun : MonoBehaviour
 
     public void Hit(Bullet bullet, Collider collision)
     {
-        Return(bullet);
-        
         if (collision.CompareTag(PlayerTag))
         {
             GameManager.Instance.KillRespawnPlayer();
         }
+        else
+        {
+            bullet.Explode();
+        }
+
+        Return(bullet);
     }
 
     void Return(Bullet bullet)

@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   source: {fileID: 0}
+  DetonatorPrefab: {fileID: 100000, guid: 67e5b9f09995840449c988b145cc1d7b, type: 3}
   speed: 11
 --- !u!136 &5966831982006076704
 CapsuleCollider:

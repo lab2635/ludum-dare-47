@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SwitchInteraction : ToggleInteraction
 {
+    public bool OnlyShootable;
+    public bool ActivateCheckpoint;
+    public Checkpoints CheckpointToActivate;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("PlayerBullet"))
+        if (this.OnlyShootable && other.gameObject.CompareTag("PlayerBullet"))
         {
             var interactionEvent = new InteractionEvent
             {
@@ -18,6 +21,16 @@ public class SwitchInteraction : ToggleInteraction
             };
 
             base.Interact(ref interactionEvent);
+        }
+    }
+
+    protected override void OnInteract(ref InteractionEvent ev)
+    {
+        base.OnInteract(ref ev);
+
+        if (this.ActivateCheckpoint)
+        {
+            GameManager.Instance.ActivateCheckpoint(this.CheckpointToActivate);
         }
     }
 }
