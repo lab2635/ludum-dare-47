@@ -20,6 +20,8 @@ public class ChestInteractable : ToggleInteraction
         this.animator = this.gameObject.GetComponent<Animator>();
         GameManager.OnReset += ResetState;
 
+        base.canInteract = false;
+
         if(this.RequiredItem == InventoryItems.None)
         {
             this.UnlockChest();
@@ -53,6 +55,7 @@ public class ChestInteractable : ToggleInteraction
 
     public void UnlockChest()
     {
+        base.canInteract = true;
         this.chestUnlocked = true;
         this.animator.SetTrigger("UnlockChest");
     }
