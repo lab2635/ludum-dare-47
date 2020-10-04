@@ -9,10 +9,11 @@ public class TriggerSwitch : Interactable
     public bool enabled;
     public bool triggered;
     public bool autoReset;
+    public bool playerActivated;
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Pushable"))
+        if (CanTriggerWith(other))
         {
             Trigger();
         }
@@ -20,13 +21,20 @@ public class TriggerSwitch : Interactable
 
     private void OnTriggerExit(Collider other)
     {
-        if (autoReset)
+        if (autoReset && CanTriggerWith(other))
         {
             Reset();
         }
     }
-
+    
     private bool CanTrigger => enabled && !triggered;
+
+    private bool CanTriggerWith(Collider other)
+    {
+        var isPushable = other.CompareTag("Pushable");
+        var isPlayerTriggered = other.CompareTag("Player") && playerActivated;
+        return isPushable || isPlayerTriggered;
+    }
     
     public void Trigger()
     {

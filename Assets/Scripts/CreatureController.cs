@@ -83,10 +83,10 @@ public class CreatureController : MonoBehaviour
 	        {
 	            velocity += gravity * Time.deltaTime;
         
-	            if (velocity.y < 0)
-	            {
-	                velocity.y -= (50 * Time.deltaTime);
-	            }
+	            // if (velocity.y < 0)
+	            // {
+	            //     velocity.y -= (50 * Time.deltaTime);
+	            // }
 	        }
 
 	        // animator.SetBool("jump", !controller.isGrounded);

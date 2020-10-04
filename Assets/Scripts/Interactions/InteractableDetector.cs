@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Doozy.Engine.UI;
 
@@ -24,7 +25,7 @@ public class InteractableDetector : MonoBehaviour
         {
             foreach (var interactable in interactables)
             {
-                if (interactable != null && Input.GetKeyDown(KeyCode.E))
+                if (interactable != null && interactable.CanPlayerInteract(player))
                 {
                     var interactionEvent = new InteractionEvent
                     {
@@ -37,7 +38,7 @@ public class InteractableDetector : MonoBehaviour
                     interactable.Interact(ref interactionEvent);
 
                     SetInteractionText(interactable.description);
-                }
+                } 
             }
         }
     }
@@ -46,16 +47,22 @@ public class InteractableDetector : MonoBehaviour
     {
         var interactable = other.gameObject.GetComponent<Interactable>();
         
-        if (interactable != null)
+        if (interactable != null && interactable.CanPlayerInteract(player))
         {
-            if (CanInteract(interactable) && interactable.CanInteract(player))
-            {
-                interactables.Add(interactable);
-                SetInteractionText(interactable.description);
-                interactable.SetSelecting(true);
-            }
+            interactables.Add(interactable);
+            interactable.SetSelecting(true);
         }
     }
+
+    // private void OnTriggerStay(Collider other)
+    // {
+    //     var interactable = other.gameObject.GetComponent<Interactable>();
+    //     
+    //     if (interactable != null && interactable.CanInteract(player))
+    //     {
+    //         SetInteractionText(interactable.description);    
+    //     }
+    // }
 
     void OnTriggerExit(Collider other)
     {
@@ -71,16 +78,6 @@ public class InteractableDetector : MonoBehaviour
                 SetInteractionText(lastInteractable.description);
             }
         }
-    }
-    
-    private bool CanInteract(Interactable interactable)
-    {
-        if (!interactable.CanInteract(player))
-        {
-            return false;
-        }
-
-        return true;
     }
 
     private void SetInteractionText(string text)

@@ -17,7 +17,7 @@ public class PushInteraction : Interactable
     
     public override string description => pushing ? string.Empty : "push box";
 
-    public override bool CanInteract(CreatureController player) => !pushing;
+    public override bool CanPlayerInteract(CreatureController player) => !pushing;
 
     protected override void OnStart()
     {

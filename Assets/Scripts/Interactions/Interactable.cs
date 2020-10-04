@@ -46,7 +46,7 @@ public abstract class Interactable : MonoBehaviour
         }
     }
 
-    public virtual bool CanInteract(CreatureController player)
+    public virtual bool CanPlayerInteract(CreatureController player)
     {
         return canInteract && Time.time >= nextInteraction;
     }
@@ -83,10 +83,7 @@ public abstract class Interactable : MonoBehaviour
                     timestamp = ev.timestamp
                 };
 
-                if (proxy.CanInteract(ev.player))
-                {
-                    proxy.Interact(ref proxyEvent);
-                }
+                proxy.Interact(ref proxyEvent);
             }
         }
     }
