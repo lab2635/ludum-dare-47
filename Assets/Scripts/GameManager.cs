@@ -25,7 +25,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     public delegate void ResetAction();
     public static event ResetAction OnReset;
 
-    public bool[] CheckpointList;
+    public bool[] CheckpointList = new bool[4];
     public int LoopCounter;
 
     private bool isPlaying;
@@ -58,7 +58,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     public void StartGame()
     {
         this.LoopCounter = 0;
-        this.CheckpointList = new bool[4];
+        //this.CheckpointList = new bool[4];
         this.IsPlayerControllerEnabled = true;
         this.TimeRemaining = this.TimeToReset;
         this.TimerView.Show();

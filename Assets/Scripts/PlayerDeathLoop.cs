@@ -13,7 +13,7 @@ public class PlayerDeathLoop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.body = this.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().gameObject;
+        this.body = this.gameObject.GetComponentInChildren<Animator>().gameObject;
         this.respawnPoint = GameObject.FindGameObjectWithTag("RespawnPoint");
     }
 
