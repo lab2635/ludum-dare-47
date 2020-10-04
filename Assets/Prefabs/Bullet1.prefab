@@ -129,6 +129,8 @@ MonoBehaviour:
   source: {fileID: 0}
   DetonatorPrefab: {fileID: 100000, guid: 67e5b9f09995840449c988b145cc1d7b, type: 3}
   speed: 11
+  ShootSFX: {fileID: 8300000, guid: e7872a40666d9374687e8817162dbd1a, type: 3}
+  LaserDeathSFX: {fileID: 8300000, guid: 531c6395f00785448972065a97b05bc9, type: 3}
 --- !u!136 &5966831982006076704
 CapsuleCollider:
   m_ObjectHideFlags: 0

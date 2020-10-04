@@ -6,19 +6,27 @@ using UnityEngine;
 public class PlayerDeathLoop : MonoBehaviour
 {
     public GameObject DetonatorPrefab;
+    public AudioClip DeathSFX;
 
     private GameObject body;
     private GameObject respawnPoint;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         this.body = this.gameObject.GetComponentInChildren<Animator>().gameObject;
         this.respawnPoint = GameObject.FindGameObjectWithTag("RespawnPoint");
+        this.audioSource = gameObject.AddComponent<AudioSource>();
+        this.audioSource.clip = this.DeathSFX;
+        this.audioSource.playOnAwake = false;
+        this.audioSource.loop = false;
     }
 
     public void KillPlayer()
     {
+        this.audioSource.Play();
+
         Detonator dTemp = (Detonator)this.DetonatorPrefab.GetComponent("Detonator");
 
         GameObject exp = (GameObject)Instantiate(this.DetonatorPrefab, this.transform.position, Quaternion.identity);

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(InventoryManager))]
 [RequireComponent(typeof(CharacterController))]
@@ -13,7 +14,12 @@ public class CreatureController : MonoBehaviour
     public float dashAcceleration = 200f;
     public Transform handTransform = null;
     public GameObject attachment = null;
-    
+
+    public AudioClip RunningLoopSFX;
+    public AudioClip DashSFX;
+
+    private AudioSource audioSource;
+    private AudioSource runningAudioSource;
     private Gun gun;
     private Animator animator;
     private CharacterController controller;
@@ -25,6 +31,15 @@ public class CreatureController : MonoBehaviour
 
     private void Start()
     {
+        audioSource = this.gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
+
+        runningAudioSource = this.gameObject.AddComponent<AudioSource>();        
+        runningAudioSource.playOnAwake = false;
+        runningAudioSource.loop = true;
+        runningAudioSource.clip = this.RunningLoopSFX;
+
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         gun = GetComponentInChildren<Gun>();
@@ -51,6 +66,9 @@ public class CreatureController : MonoBehaviour
     {
         if (CanDash())
         {
+            this.audioSource.clip = this.DashSFX;
+            this.audioSource.Play();
+
             velocity += transform.forward * dashAcceleration;
             dashAccumulator = 0;
         }
@@ -127,6 +145,15 @@ public class CreatureController : MonoBehaviour
         if (moveDirection.magnitude > 1.0f)
         {
             moveDirection = moveDirection.normalized;
+        }
+
+        if(moveDirection != Vector3.zero && !this.runningAudioSource.isPlaying)
+        {
+            this.runningAudioSource.Play();
+        }
+        else if(moveDirection == Vector3.zero)
+        {
+            this.runningAudioSource.Stop();
         }
 
         moveDirection = transform.InverseTransformDirection(moveDirection);

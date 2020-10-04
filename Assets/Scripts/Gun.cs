@@ -25,6 +25,7 @@ public class Gun : MonoBehaviour
     {
         if (collision.CompareTag(PlayerTag))
         {
+            bullet.PlayerImpact();
             GameManager.Instance.KillRespawnPlayer();
         }
         else
