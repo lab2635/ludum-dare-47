@@ -11,6 +11,7 @@ TagManager:
   - RespawnPoint
   - InteractionUI
   - Pushable
+  - Bullets
   layers:
   - Default
   - TransparentFX

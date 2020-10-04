@@ -11,6 +11,8 @@ public class CreatureController : MonoBehaviour
     public float rotationSpeed = 270f;
     public float dashCooldown = 1f;
     public float dashAcceleration = 200f;
+    public Transform handTransform;
+    public GameObject attachment;
     
     private Gun gun;
     private Animator animator;
