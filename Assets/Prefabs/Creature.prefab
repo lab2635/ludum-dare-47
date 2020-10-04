@@ -812,7 +812,7 @@ MonoBehaviour:
   autoFire: 0
   bulletSpeed: 11
   bulletCount: 1
-  fireRate: 3
+  fireRate: 0
   triggerRate: 1
   bulletPrefab: {fileID: 4070859751482108958, guid: b8770075e30e9c24699e127649f99213, type: 3}
 --- !u!1 &5738675466307097793
@@ -1229,6 +1229,7 @@ MonoBehaviour:
   dashCooldown: 1
   dashAcceleration: 200
   handTransform: {fileID: 242456558581755771}
+  attachment: {fileID: 0}
 --- !u!114 &2559618258591784912
 MonoBehaviour:
   m_ObjectHideFlags: 0
