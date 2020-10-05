@@ -12,7 +12,7 @@ TagManager:
   - InteractionUI
   - Pushable
   - Bullets
-  - TimerText
+  - Door
   layers:
   - Default
   - TransparentFX

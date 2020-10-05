@@ -645,64 +645,6 @@ Transform:
   m_Father: {fileID: 189303364379008162}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5193784785518695438
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5643384857557432515}
-  - component: {fileID: 22519295068775643}
-  - component: {fileID: 1077868559977567713}
-  m_Layer: 10
-  m_Name: Interactions
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5643384857557432515
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5193784785518695438}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7073247942940756934}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &22519295068775643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5193784785518695438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fb2fedeffa0c634ea29d386f9a7c9dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 7323839230909906729}
---- !u!65 &1077868559977567713
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5193784785518695438}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2.2, z: 2}
-  m_Center: {x: 0, y: 1.1, z: 0}
 --- !u!1 &5206706323395980242
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,7 +736,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7073247942940756934}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1886216111879809518
 MonoBehaviour:
@@ -1146,6 +1088,7 @@ GameObject:
   - component: {fileID: 2559618258591784912}
   - component: {fileID: 7690058803164870683}
   - component: {fileID: 3187227102819707538}
+  - component: {fileID: 3841834960187544388}
   m_Layer: 12
   m_Name: Creature
   m_TagString: Player
@@ -1168,7 +1111,6 @@ Transform:
   - {fileID: 5400374259615371103}
   - {fileID: 6662696574828537367}
   - {fileID: 1485237930950571985}
-  - {fileID: 5643384857557432515}
   - {fileID: 242456558581755771}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1224,11 +1166,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpForce: 5
-  gravity: {x: 0, y: -10, z: 0}
+  gravity: {x: 0, y: -8, z: 0}
   cameraOffset: {x: 0, y: 8, z: -2.5}
   rotationSpeed: 270
   dashCooldown: 1
-  dashAcceleration: 200
+  dashDuration: 0.15
+  dashAcceleration: 30
   handTransform: {fileID: 242456558581755771}
   attachment: {fileID: 0}
   RunningLoopSFX: {fileID: 8300000, guid: 0ae4ee84e932abc4e8f8316e37b35b66, type: 3}
@@ -1245,9 +1188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e962fb7241652604c976a8968010d00b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key1View: {fileID: 0}
-  Key2View: {fileID: 0}
-  Key3View: {fileID: 0}
 --- !u!114 &7690058803164870683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1278,6 +1218,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3841834960187544388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7593888296310100348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb2fedeffa0c634ea29d386f9a7c9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layer:
+    serializedVersion: 2
+    m_Bits: 1024
+  detectionRadius: 1.5
 --- !u!1 &7698789679939129689
 GameObject:
   m_ObjectHideFlags: 0
