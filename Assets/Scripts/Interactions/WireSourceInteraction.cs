@@ -17,6 +17,8 @@ public class WireSourceInteraction : Interactable
     public int slot;
     public WireSinkInteraction sink;
 
+    public override string description => grabbed ? string.Empty : "grab cable";
+
     protected override void OnStart()
     {
         base.OnStart();
