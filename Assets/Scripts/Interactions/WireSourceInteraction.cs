@@ -36,10 +36,11 @@ public class WireSourceInteraction : Interactable
 
     public void Reset()
     {
-        // if (sink != null)
-        //     sink.Reset();
-        //
-        // sink = null;
+        if (sink != null)
+            sink.Reset();
+
+        cable.Clear();
+        sink = null;
     }
 
     protected override void OnInteract(ref InteractionEvent ev)

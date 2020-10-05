@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(InventoryManager))]
@@ -28,6 +29,7 @@ public class CreatureController : MonoBehaviour
     private Vector3 facing;
     private float dashAccumulator;
     private Vector3 moveDirection = Vector3.zero;
+
 
     private void Start()
     {
@@ -59,6 +61,12 @@ public class CreatureController : MonoBehaviour
 	    
 	    gun.gunEnabled = true;
     }
+    
+    public void RemoveAttachment()
+    {
+	    attachment = null;
+    }
+
 
     private bool CanDash() => dashAccumulator >= dashCooldown;
 
