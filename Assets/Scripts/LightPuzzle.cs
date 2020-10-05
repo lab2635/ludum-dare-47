@@ -7,6 +7,7 @@ public class LightPuzzle : Interactable
     public LeverInteraction[] levers;
 
     private int state;
+    private bool spawned;
 
     private const int OFF_STATE = 0b00000000;
     private const int WIN_STATE = 0b00011111;
@@ -21,11 +22,12 @@ public class LightPuzzle : Interactable
     protected override void OnStart()
     {
         state = OFF_STATE;
+        base.OnStart();
     }
 
     protected override void OnInteract(ref InteractionEvent ev)
     {
-        if (state == OFF_STATE)
+        if (!spawned)
         {
             Spawn();
             return;
@@ -43,9 +45,21 @@ public class LightPuzzle : Interactable
                     base.OnInteract(ref ev);
             }
         }
-        else
+        else if (ev.proxied)
         {
-            Spawn();
+            Reset();
+        }
+    }
+
+    public void Reset()
+    {
+        spawned = false;
+        state = OFF_STATE;
+        
+        for (var i = 0; i < levers.Length; i++)
+        {
+            levers[i].Toggle(false);
+            lights[i].Toggle(false);
         }
     }
 
@@ -53,7 +67,8 @@ public class LightPuzzle : Interactable
     {
         Generate();
         Synchronize();
-
+        spawned = true;
+        
         // toggleSound = FMODUnity.RuntimeManager.CreateInstance(toggleEvent);
         // solveSound = FMODUnity.RuntimeManager.CreateInstance(solveEvent);
         // solveSound.setVolume(0.4f);
