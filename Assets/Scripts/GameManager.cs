@@ -11,8 +11,9 @@ public class GameManager : SingletonBehaviour<GameManager>
     public string MainGame;
     public UIView TimerView;
     public TMP_Text TimerText;
-    // public UICanvas LoseScreen;
-    // public UICanvas WinScreen;
+
+    public UIView WinContainer;
+    public TMP_Text WinText;
 
     public bool SkipTitle;
     public bool NeverLose;
@@ -33,14 +34,9 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     private bool alreadyDead;
 
-    // Start is called before the first frame update
-
-    // public bool IsAlarmActive => MajorHoles != 0 || MinorHoles != 0 || CurrentOxygen <= 25;
-
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        SceneManager.sceneLoaded += this.OnSceneLoaded;
 
         this.isPlaying = false;
         this.alreadyDead = false;
@@ -49,64 +45,34 @@ public class GameManager : SingletonBehaviour<GameManager>
         {
             this.StartGame();
         }
-        //else if(SceneManager.GetActiveScene().name != this.TitleScene)
-        //{
-        //    this.ReturnToTitle();
-        //}
     }
 
     public void StartGame()
     {
         this.LoopCounter = 0;
-        //this.CheckpointList = new bool[4];
         this.IsPlayerControllerEnabled = true;
         this.TimeRemaining = this.TimeToReset;
         this.TimerView.Show();
-        // this.LoseScreen.gameObject.SetActive(false);
-        // SceneManager.LoadScene(this.MainGame);
-    }
-
-    public void LoseGame()
-    {
-        this.isPlaying = false;
-        // this.LoseScreen.gameObject.SetActive(true);
     }
 
     public void WinGame()
     {
         this.isPlaying = false;
-        // this.WinScreen.gameObject.SetActive(true);
+        this.IsPlayerControllerEnabled = false;
+        this.WinContainer.Show();
+        this.WinText.text = $"You escaped in {this.LoopCounter} loops!";
     }
 
     public void ReturnToTitle()
     {
-        // this.LoseScreen.gameObject.SetActive(false);
-        // this.WinScreen.gameObject.SetActive(false);
+        this.WinContainer.Hide();
         this.IsPlayerControllerEnabled = false;
-        // SceneManager.LoadScene(this.TitleScene);
+        SceneManager.LoadScene(this.TitleScene);
     }
 
     public void QuitGame()
     {
         Application.Quit();
-    }
-
-    public void OnDisable()
-    {
-        // SceneManager.sceneLoaded -= this.OnSceneLoaded;
-    }
-
-    public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
-    {
-        if(scene.name == this.MainGame)
-        {
-            this.ResetGameState();
-        }
-        else if(scene.name == this.TitleScene)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
     }
 
     public void ActivateCheckpoint(Checkpoints checkpoint)
@@ -118,6 +84,7 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     private void ResetGameState()
     {
+        this.LoopCounter = 0;
         this.startTime = Time.deltaTime;
         this.isPlaying = true;
         this.TimeRemaining = this.TimeToReset;

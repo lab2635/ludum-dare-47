@@ -181,6 +181,19 @@ public class CreatureController : MonoBehaviour
         body.velocity = direction * speed;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "DisableTimerZone")
+        {
+            GameManager.Instance.NeverLose = true;
+        }
+
+        if (other.gameObject.name == "WinTrigger")
+        {
+            GameManager.Instance.WinGame();
+        }
+    }
+
     private void CheckGround()
     {
         if (Physics.Raycast(new Ray(transform.position, Vector3.down), 1f))
