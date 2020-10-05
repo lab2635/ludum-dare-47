@@ -141,9 +141,9 @@ public class GameManager : SingletonBehaviour<GameManager>
 
         OnReset();
         
-        loop.RespawnPlayer();
-        
         yield return new WaitForSeconds(2);
+
+        loop.RespawnPlayer();
         
         IsPlayerControllerEnabled = true; 
         alreadyDead = false; 

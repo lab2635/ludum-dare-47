@@ -8,6 +8,8 @@ public class PlayerDeathLoop : MonoBehaviour
     public GameObject DetonatorPrefab;
     public AudioClip DeathSFX;
 
+    private CreatureController player;
+
     private GameObject body;
     private GameObject respawnPoint;
     private AudioSource audioSource;
@@ -15,6 +17,7 @@ public class PlayerDeathLoop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<CreatureController>();
         this.body = this.gameObject.GetComponentsInChildren<Animator>()[1].gameObject;
         this.respawnPoint = GameObject.FindGameObjectWithTag("RespawnPoint");
         this.audioSource = gameObject.AddComponent<AudioSource>();
@@ -36,6 +39,7 @@ public class PlayerDeathLoop : MonoBehaviour
 
         Destroy(exp, 2);
 
+        player.gameObject.SetActive(false);
         this.body.SetActive(false);
     }
 
@@ -43,5 +47,8 @@ public class PlayerDeathLoop : MonoBehaviour
     {
         this.transform.position = this.respawnPoint.transform.position;
         this.body.SetActive(true);
+
+        player.gameObject.SetActive(true);
+        player.transform.position = respawnPoint.transform.position;
     }
 }
