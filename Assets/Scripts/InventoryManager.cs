@@ -35,22 +35,20 @@ public class InventoryManager : MonoBehaviour
 
     public void GetItem(InventoryItems contents)
     {
+        Inventory.Add(contents);
+        
         switch (contents)
         {
             case InventoryItems.SpawnRoomKey:
-                this.Inventory.Add(InventoryItems.SpawnRoomKey);
                 this.Key1View.Show();
                 break;
             case InventoryItems.Room1RewardKey:
-                this.Inventory.Add(InventoryItems.Room1RewardKey);
                 this.Key2View.Show();
                 break;
             case InventoryItems.Room1Reward:
-                this.Inventory.Add(InventoryItems.Room1Reward);
                 this.Key3View.Show();
                 break;
             case InventoryItems.Gun:
-                this.Inventory.Add(InventoryItems.Gun);
                 this.gameObject.GetComponent<CreatureController>().AcquireGun();
                 break;
             default: break;
