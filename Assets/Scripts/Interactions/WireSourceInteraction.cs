@@ -10,7 +10,9 @@ public class WireSourceInteraction : Interactable
     private LineRenderer lineRenderer;
     private Material cableMaterial;
     private bool grabbed = false;
-    
+    public AudioClip GrabSFX;
+
+    private AudioSource audioSource;
     public Color color;
     public int slot;
     public WireSinkInteraction sink;
@@ -18,6 +20,11 @@ public class WireSourceInteraction : Interactable
     protected override void OnStart()
     {
         base.OnStart();
+
+        this.audioSource = gameObject.AddComponent<AudioSource>();
+        this.audioSource.clip = this.GrabSFX;
+        this.audioSource.playOnAwake = false;
+        this.audioSource.loop = false;
 
         lineRenderer = GetComponent<LineRenderer>();
         cableMaterial = Instantiate(lineRenderer.material);
@@ -47,6 +54,7 @@ public class WireSourceInteraction : Interactable
         
         if (ev.player.attachment == null)
         {
+            this.audioSource.Play();
             grabbed = true;
             ev.player.attachment = gameObject;
             cable.endPointTransform = ev.player.handTransform;

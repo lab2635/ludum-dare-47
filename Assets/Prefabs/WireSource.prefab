@@ -231,6 +231,7 @@ MonoBehaviour:
   cooldown: 0
   proxies: []
   holdTime: 0
+  GrabSFX: {fileID: 8300000, guid: 9ebf37474e1fc70458324c8131f11d97, type: 3}
   color: {r: 0, g: 0.7149544, b: 1, a: 0}
   slot: 0
   sink: {fileID: 0}
