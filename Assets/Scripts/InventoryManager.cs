@@ -141,6 +141,10 @@ public class InventoryManager : MonoBehaviour
         {
             this.GetItem(InventoryItems.Gun);
         }
+        else
+        {
+            this.gameObject.GetComponent<CreatureController>().RemoveGun();
+        }
     }
 }
 
