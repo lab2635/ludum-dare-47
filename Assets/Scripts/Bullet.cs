@@ -39,7 +39,7 @@ public class Bullet : MonoBehaviour
         {
             this.audioSource.spread = 180;
             this.audioSource.maxDistance = 5;
-            this.audioSource.volume = 0.05f;
+            this.audioSource.volume = 0.02f;
         }
 
         this.audioSource.Play();
@@ -72,7 +72,7 @@ public class Bullet : MonoBehaviour
     public void PlayerImpact()
     {
         this.audioSource.clip = this.LaserDeathSFX;
-        this.audioSource.volume = 10f;
+        this.audioSource.volume = 0.05f;
         this.audioSource.Play();
     }
 }

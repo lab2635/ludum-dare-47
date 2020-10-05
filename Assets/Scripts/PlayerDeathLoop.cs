@@ -15,12 +15,13 @@ public class PlayerDeathLoop : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.body = this.gameObject.GetComponentInChildren<Animator>().gameObject;
+        this.body = this.gameObject.GetComponentsInChildren<Animator>()[1].gameObject;
         this.respawnPoint = GameObject.FindGameObjectWithTag("RespawnPoint");
         this.audioSource = gameObject.AddComponent<AudioSource>();
         this.audioSource.clip = this.DeathSFX;
         this.audioSource.playOnAwake = false;
         this.audioSource.loop = false;
+        this.audioSource.volume = 0.5f;
     }
 
     public void KillPlayer()

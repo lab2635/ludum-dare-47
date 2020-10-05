@@ -7,8 +7,18 @@ public class SwitchInteraction : MonoBehaviour
 {
     public bool OnlyShootable;
     public Animator ButtonAnimator;
+    public AudioClip PushSFX;
 
+    private AudioSource audioSource;
     private CheckpointInteractable interactable;
+
+    private void Start()
+    {
+        this.audioSource = gameObject.AddComponent<AudioSource>();
+        this.audioSource.clip = this.PushSFX;
+        this.audioSource.playOnAwake = false;
+        this.audioSource.loop = false;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,6 +27,7 @@ public class SwitchInteraction : MonoBehaviour
             if (!this.ButtonAnimator.GetBool("isPressed"))
             {
                 this.ButtonAnimator.SetBool("isPressed", true);
+                this.audioSource.Play();
 
                 var interactionEvent = new InteractionEvent
                 {

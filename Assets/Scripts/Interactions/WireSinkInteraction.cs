@@ -5,6 +5,19 @@ using UnityEngine;
 public class WireSinkInteraction : Interactable
 {
     public int slot;
+    public AudioClip ConnectSFX;
+
+    private AudioSource audioSource;
+
+    protected override void OnStart()
+    {
+        base.OnStart();
+
+        this.audioSource = gameObject.AddComponent<AudioSource>();
+        this.audioSource.clip = this.ConnectSFX;
+        this.audioSource.playOnAwake = false;
+        this.audioSource.loop = false;
+    }
 
     public void Reset()
     {
@@ -24,6 +37,8 @@ public class WireSinkInteraction : Interactable
 
     protected override void OnInteract(ref InteractionEvent ev)
     {
+        this.audioSource.Play();
+
         var attachment = ev.player.attachment;
 
         if (attachment == null)
