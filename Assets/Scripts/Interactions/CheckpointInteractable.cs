@@ -28,14 +28,10 @@ public class CheckpointInteractable : Interactable
         if (ActivateCheckpoint)
         {
             GameManager.Instance.ActivateCheckpoint(this.CheckpointToActivate);
-            
         }
 
-        if (requiredItem != InventoryItems.None && requiredItem != InventoryItems.Remote)
-        {
-            ev.player.GetComponent<InventoryManager>().Inventory.Remove(requiredItem);
-        }
-        
+        ev.player.GetComponent<InventoryManager>().RemoveItem(requiredItem);
+
         base.OnInteract(ref ev);
     }
 }
