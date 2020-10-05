@@ -24,4 +24,12 @@ public class DeathZone : MonoBehaviour
             GameManager.Instance.KillRespawnPlayer();
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.Instance.KillRespawnPlayer();
+        }
+    }
 }
