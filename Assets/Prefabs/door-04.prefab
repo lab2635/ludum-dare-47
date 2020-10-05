@@ -349,3 +349,4 @@ MonoBehaviour:
   holdTime: 0
   RequiredItem: 4
   RelatedCheckpoint: 0
+  DoorOpenSFX: {fileID: 8300000, guid: 9c34b9b1b93ffdc46b3f4c066b5a4220, type: 3}

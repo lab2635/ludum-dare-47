@@ -7,13 +7,21 @@ public class DoorController : Interactable
 {
     public InventoryItems RequiredItem;
     public Checkpoints RelatedCheckpoint;
+    public AudioClip DoorOpenSFX;
 
+    private AudioSource audioSource;
     private Animator animator;
     private bool doorOpened;
 
     // Start is called before the first frame update
     void Start()
     {
+        this.audioSource = gameObject.AddComponent<AudioSource>();
+        this.audioSource.clip = this.DoorOpenSFX;
+        this.audioSource.playOnAwake = false;
+        this.audioSource.loop = false;
+        this.audioSource.volume = 0.1f;
+
         this.doorOpened = false;
         this.animator = this.gameObject.GetComponent<Animator>();
         GameManager.OnReset += ResetState;
@@ -45,6 +53,7 @@ public class DoorController : Interactable
 
     public void OpenDoor()
     {
+        this.audioSource.Play();
         this.doorOpened = true;
         this.animator.SetTrigger("OpenDoor");
     }

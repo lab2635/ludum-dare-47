@@ -14,7 +14,12 @@ public class PushInteraction : Interactable
 
     public float distance = 2f;
     public float speed = 5f;
-    
+
+    public AudioClip PushSFX;
+    private AudioSource audioSource;
+
+    private Vector3 startPosition;
+
     public override string description => pushing ? string.Empty : "push box";
 
     public override bool CanPlayerInteract(CreatureController player) => !pushing;
@@ -22,6 +27,13 @@ public class PushInteraction : Interactable
     protected override void OnStart()
     {
         body = GetComponent<Rigidbody>();
+        this.audioSource = gameObject.AddComponent<AudioSource>();
+        this.audioSource.clip = this.PushSFX;
+        this.audioSource.playOnAwake = false;
+        this.audioSource.loop = false;
+        this.startPosition = this.transform.position;
+
+        GameManager.OnReset += this.ResetPosition;
     }
 
     protected override void OnInteract(ref InteractionEvent ev)
@@ -45,6 +57,7 @@ public class PushInteraction : Interactable
     {
         if (!pushing)
         {
+            this.audioSource.Play();
             pushing = true;
             direction = SnapToCardinalDirection(dir);
             target = body.position + (direction * distance);
@@ -77,5 +90,10 @@ public class PushInteraction : Interactable
         {
             pushing = false;
         }
+    }
+
+    private void ResetPosition()
+    {
+        this.transform.position = this.startPosition;
     }
 }
