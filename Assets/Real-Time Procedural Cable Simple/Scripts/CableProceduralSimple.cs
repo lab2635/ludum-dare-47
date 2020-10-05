@@ -102,9 +102,10 @@ public class CableProceduralSimple : MonoBehaviour
 			Vector3 swayAtPoint = swayMultiplier * transform.TransformDirection( new Vector3(Mathf.Sin(swayValue) * swayXMultiplier, Mathf.Cos(2 * swayValue + Mathf.PI) * .5f * swayYMultiplier, 0));
 			// Calculate the waving due to wind for the current point i 
 
+			var offset = Vector3.up * 0.5f;
 			// Calculate the postion with Sag.
 			Vector3 currentPointsPosition = 
-				transform.position + 
+				transform.position + offset +
 				pointPosition + 
 				(swayAtPoint + 
 					Vector3.ClampMagnitude(sagAtPoint, sagAmplitude)) * effectAtPointMultiplier;
