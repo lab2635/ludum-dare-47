@@ -10,7 +10,14 @@ public class TriggerSwitch : Interactable
     public bool triggered;
     public bool autoReset;
     public bool playerActivated;
-    
+
+    protected override void OnStart()
+    {
+        base.OnStart();
+
+        GameManager.OnReset += this.ResetSelf;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (CanTriggerWith(other))
@@ -49,5 +56,10 @@ public class TriggerSwitch : Interactable
     {
         triggered = false;
         Interact(gameObject);
+    }
+
+    public void ResetSelf()
+    {
+        triggered = false;
     }
 }

@@ -16,7 +16,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     public UIView WinContainer;
     public TMP_Text WinText;
 
-    public bool SkipTitle;
+    //public bool SkipTitle;
     public bool NeverLose;
 
     public bool IsPlayerControllerEnabled;
@@ -40,16 +40,14 @@ public class GameManager : SingletonBehaviour<GameManager>
         DontDestroyOnLoad(this.gameObject);
 
         this.isPlaying = false;
-        this.alreadyDead = false;
+        this.alreadyDead = true;
 
-        if (this.SkipTitle && SceneManager.GetActiveScene().name != this.MainGame)
-        {
-            this.StartGame();
-        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     public void StartGame()
     {
+        this.alreadyDead = false;
         this.LoopCounter = 0;
         this.IsPlayerControllerEnabled = true;
         this.TimeRemaining = this.TimeToReset;
@@ -90,6 +88,15 @@ public class GameManager : SingletonBehaviour<GameManager>
         this.isPlaying = true;
         this.TimeRemaining = this.TimeToReset;
         this.IsPlayerControllerEnabled = true;
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        if (scene.name == "Main")
+        {
+            this.ResetGameState();
+            this.StartGame();
+        }
     }
 
     private void Update()

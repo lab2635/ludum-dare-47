@@ -51,7 +51,6 @@ public class WirePuzzle : Interactable
             
             if (!solved && Solved())
             {
-                Debug.Log("SOLVED");
                 solved = true;
                 Interact(gameObject);
             }
