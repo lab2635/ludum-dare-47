@@ -34,6 +34,8 @@ public class PuzzleButton : Interactable
     public void Reset()
     {
         active = false;
-        meshRenderer.material.color = originalColor;
+        
+        if (meshRenderer != null)
+            meshRenderer.material.color = originalColor;
     }
 }
