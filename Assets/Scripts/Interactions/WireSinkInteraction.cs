@@ -8,6 +8,8 @@ public class WireSinkInteraction : Interactable
     public AudioClip ConnectSFX;
 
     private AudioSource audioSource;
+    
+    public override string description => "connect cable";
 
     protected override void OnStart()
     {
