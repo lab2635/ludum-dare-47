@@ -85,6 +85,7 @@ public class GameManager : SingletonBehaviour<GameManager>
     private void ResetGameState()
     {
         this.CheckpointList = new bool[7];
+        this.NeverLose = false;
 
         this.LoopCounter = 0;
         this.startTime = Time.deltaTime;
