@@ -39,10 +39,8 @@ public class PlayerDeathLoop : MonoBehaviour
         this.body.SetActive(false);
     }
 
-    public IEnumerator RespawnPlayer(System.Action action)
+    public void RespawnPlayer()
     {
-        yield return new WaitForSeconds(2);
-        action.Invoke();
         this.transform.position = this.respawnPoint.transform.position;
         this.body.SetActive(true);
     }

@@ -1,5 +1,6 @@
 ﻿using Doozy.Engine.UI;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
@@ -120,22 +121,30 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     public void KillRespawnPlayer()
     {
-        if (!this.NeverLose)
+        if (!NeverLose)
         {
-            this.LoopCounter++;
+            LoopCounter++;
+            IsPlayerControllerEnabled = false;
+            alreadyDead = true;
 
-            this.IsPlayerControllerEnabled = false;
-            this.alreadyDead = true;
-
-            PlayerDeathLoop pdl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDeathLoop>();
-            pdl.KillPlayer();
-
-            OnReset();
-
-            Action action = () => { this.IsPlayerControllerEnabled = true; this.alreadyDead = false; this.TimeRemaining = this.TimeToReset; };
-
-            StartCoroutine(pdl.RespawnPlayer(action));
+            var pdl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDeathLoop>();
+            StartCoroutine(RespawnPlayer(pdl));
         }
+    }
+
+    private IEnumerator RespawnPlayer(PlayerDeathLoop loop)
+    {
+        loop.KillPlayer();
+
+        OnReset();
+        
+        loop.RespawnPlayer();
+        
+        yield return new WaitForSeconds(2);
+        
+        IsPlayerControllerEnabled = true; 
+        alreadyDead = false; 
+        TimeRemaining = TimeToReset;
     }
 
     
