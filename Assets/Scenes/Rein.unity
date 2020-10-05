@@ -35006,11 +35006,11 @@ MonoBehaviour:
   TimerView: {fileID: 1662189907}
   TimerText: {fileID: 1176192540}
   SkipTitle: 1
-  NeverLose: 1
+  NeverLose: 0
   IsPlayerControllerEnabled: 0
   TimeRemaining: 0
   TimeToReset: 30
-  CheckpointList: 00010101000000
+  CheckpointList: 00010000000000
   LoopCounter: 0
 --- !u!4 &726425033
 Transform:
@@ -100129,6 +100129,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1194779056}
     m_Modifications:
+    - target: {fileID: 1543809211140344868, guid: 0187e8061e2eebc41922a943a688726d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ed885fac4c3b67a4198934d4e3ad60eb, type: 2}
     - target: {fileID: 2405048315154280196, guid: 0187e8061e2eebc41922a943a688726d, type: 3}
       propertyPath: m_Name
       value: Display Screen (1)
