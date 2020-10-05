@@ -4,7 +4,6 @@ using UnityEngine;
 public class LightPuzzle : Interactable
 {
     public LightInteraction[] lights;
-    public LightInteraction successLight;
 
     private int state;
 
@@ -32,7 +31,9 @@ public class LightPuzzle : Interactable
             if (index >= 0)
             {
                 Toggle(index);
-                Synchronize();
+                
+                if (Synchronize())
+                    base.OnInteract(ref ev);
             }
         }
         else
@@ -43,8 +44,6 @@ public class LightPuzzle : Interactable
 
     public void Spawn()
     {
-        successLight.Toggle(false);
-
         Generate();
         Synchronize();
 
@@ -57,9 +56,7 @@ public class LightPuzzle : Interactable
     {
         var won = IsWon();
         var interactable = !won;
-
-        successLight.Toggle(won);
-
+        
         for (var i = 0; i < lights.Length; i++)
         {
             var value = (state >> i) & 1;

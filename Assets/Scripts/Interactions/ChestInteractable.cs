@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class ChestInteractable : ToggleInteraction
+public class ChestInteractable : Interactable
 {
     public InventoryItems Contents;
     public InventoryItems RequiredItem;
@@ -13,49 +13,77 @@ public class ChestInteractable : ToggleInteraction
     private bool chestUnlocked;
     private bool contentsTaken;
 
+    public override string description => "open chest";
+
+    public override bool CanPlayerInteract(CreatureController player)
+    {
+        if (!chestUnlocked)
+        {
+            if (RequiredItem == InventoryItems.None)
+                return true;
+            
+            var inventory = player.GetComponent<InventoryManager>().Inventory;
+            var hasRequiredItem = RequiredItem == InventoryItems.None || inventory.Contains(RequiredItem);
+            return hasRequiredItem;
+        }
+
+        return !contentsTaken;
+    }
+
     // Start is called before the first frame update
     protected override void OnStart()
     {
         base.OnStart();
         this.animator = this.gameObject.GetComponent<Animator>();
         GameManager.OnReset += ResetState;
-
-        base.canInteract = false;
-
+        
         if(this.RequiredItem == InventoryItems.None)
         {
             this.UnlockChest();
         }
     }
 
-    protected override void OnInteract(ref InteractionEvent ev)
+    void Update()
     {
-        if (this.RequiredItem == InventoryItems.Remote)
+        if (chestUnlocked)
         {
-            if (this.chestUnlocked && !this.contentsTaken)
+            return;
+        }
+
+        if (RequiredItem != InventoryItems.None && RequiredItem != InventoryItems.Remote)
+        {
+            var inventoryManager = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryManager>();
+
+            if (inventoryManager.Inventory.Contains(RequiredItem))
             {
-                this.OpenChest();
-                ev.player.GetComponent<InventoryManager>().GetItem(this.Contents);
-                base.canInteract = false;
-            }
-            else if (!this.chestUnlocked && !this.contentsTaken && ev.proxied)
-            {
-                base.OnInteract(ref ev);
-                this.UnlockChest();
+                UnlockChest();
             }
         }
-        else if(!this.contentsTaken && 
-            (this.RequiredItem == InventoryItems.None || ev.player.GetComponent<InventoryManager>().Inventory.Contains(this.RequiredItem)))
+    }
+
+    protected override void OnInteract(ref InteractionEvent ev)
+    {
+        if (!chestUnlocked)
         {
-            this.OpenChest();
-            ev.player.GetComponent<InventoryManager>().GetItem(this.Contents);
-            base.canInteract = false;
+            this.UnlockChest();
+            return;
+        }
+
+        if (!contentsTaken)
+        {
+            if (RequiredItem != InventoryItems.None && RequiredItem != InventoryItems.Remote)
+            {
+                ev.player.GetComponent<InventoryManager>().RemoveItem(this.RequiredItem);
+            }
+
+            OpenChest();
+            ev.player.GetComponent<InventoryManager>().GetItem(Contents);
+            base.OnInteract(ref ev);
         }
     }
 
     public void UnlockChest()
     {
-        base.canInteract = true;
         this.chestUnlocked = true;
         this.animator.SetTrigger("UnlockChest");
     }

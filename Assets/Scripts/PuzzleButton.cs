@@ -8,9 +8,9 @@ using UnityEngine.Rendering.Universal;
 public class PuzzleButton : Interactable
 {
     private MeshRenderer meshRenderer;
-    private Material buttonMaterial;
     private bool active = false;
 
+    private Color originalColor;
     public Color color;
     
     public override string description => !active ? "activate button" : string.Empty;
@@ -19,25 +19,20 @@ public class PuzzleButton : Interactable
     protected override void OnStart()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        buttonMaterial = Instantiate(meshRenderer.material);
-        meshRenderer.material = buttonMaterial;
+        meshRenderer.material = Instantiate(meshRenderer.material);
+        originalColor = meshRenderer.material.color;
         Reset();
     }
 
     protected override void OnInteract(ref InteractionEvent ev)
     {
         active = true;
-        buttonMaterial.color = Color.white;
+        meshRenderer.material.color = color;
         base.OnInteract(ref ev);
     }
 
     public void Reset()
     {
         active = false;
-        
-        if (buttonMaterial != null)
-        {
-            buttonMaterial.color = color;
-        }
     }
 }
