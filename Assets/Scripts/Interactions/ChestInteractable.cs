@@ -8,7 +8,10 @@ public class ChestInteractable : Interactable
     public InventoryItems Contents;
     public InventoryItems RequiredItem;
     public Checkpoints RelatedCheckpoint;
+    public AudioClip ChestPopOpenSFX;
+    public AudioClip ChestOpenSFX;
 
+    private AudioSource audioSource;
     private Animator animator;
     private bool chestUnlocked;
     private bool contentsTaken;
@@ -34,6 +37,12 @@ public class ChestInteractable : Interactable
     protected override void OnStart()
     {
         base.OnStart();
+
+        this.audioSource = gameObject.AddComponent<AudioSource>();
+        this.audioSource.clip = this.ChestPopOpenSFX;
+        this.audioSource.playOnAwake = false;
+        this.audioSource.loop = false;
+
         this.animator = this.gameObject.GetComponent<Animator>();
         GameManager.OnReset += ResetState;
         
@@ -52,11 +61,16 @@ public class ChestInteractable : Interactable
 
         if (RequiredItem != InventoryItems.None && RequiredItem != InventoryItems.Remote)
         {
-            var inventoryManager = GameObject.FindGameObjectWithTag("Player").GetComponent<InventoryManager>();
+            var player = GameObject.FindGameObjectWithTag("Player");
 
-            if (inventoryManager.Inventory.Contains(RequiredItem))
+            if (player != null)
             {
-                UnlockChest();
+                var inventoryManager = player.GetComponent<InventoryManager>();
+
+                if (inventoryManager.Inventory.Contains(RequiredItem))
+                {
+                    UnlockChest();
+                }
             }
         }
     }
@@ -84,12 +98,18 @@ public class ChestInteractable : Interactable
 
     public void UnlockChest()
     {
+        this.audioSource.clip = this.ChestPopOpenSFX;
+        this.audioSource.volume = 0.5f;
+        this.audioSource.Play();
         this.chestUnlocked = true;
         this.animator.SetTrigger("UnlockChest");
     }
 
     public void OpenChest()
     {
+        this.audioSource.clip = this.ChestOpenSFX;
+        this.audioSource.volume = 1.0f;
+        this.audioSource.Play();
         this.contentsTaken = true;
         this.animator.SetTrigger("OpenChest");
     }

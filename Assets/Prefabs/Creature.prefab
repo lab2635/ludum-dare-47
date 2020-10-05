@@ -1777,18 +1777,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreenCreature
       objectReference: {fileID: 0}
-    - target: {fileID: 5866666021909216657, guid: fe7935a00d87cf440a2d5319b803f82c, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 23b897e5b68a3f94481c158030e6af55, type: 2}
-    - target: {fileID: 5866666021909216657, guid: fe7935a00d87cf440a2d5319b803f82c, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5866666021909216657, guid: fe7935a00d87cf440a2d5319b803f82c, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe7935a00d87cf440a2d5319b803f82c, type: 3}
 --- !u!4 &5400374259615371103 stripped

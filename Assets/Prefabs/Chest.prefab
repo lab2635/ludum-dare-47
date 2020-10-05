@@ -974,13 +974,11 @@ MonoBehaviour:
   cooldown: 0
   proxies: []
   holdTime: 0
-  objectName: Chest
-  activeTemplate: Open {0}
-  inactiveTemplate: 
-  toggled: 0
   Contents: 0
   RequiredItem: 0
   RelatedCheckpoint: 0
+  ChestPopOpenSFX: {fileID: 8300000, guid: 084c2376d91dafe40ac3a1508b871b72, type: 3}
+  ChestOpenSFX: {fileID: 8300000, guid: 23fc8da14d464ba4b92067e80661580c, type: 3}
 --- !u!65 &6851078303848255846
 BoxCollider:
   m_ObjectHideFlags: 0

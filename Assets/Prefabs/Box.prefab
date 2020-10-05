@@ -78,6 +78,7 @@ MonoBehaviour:
   holdTime: 0
   distance: 2
   speed: 5
+  PushSFX: {fileID: 8300000, guid: 54ac22988f836934ea7e44daca4f58d9, type: 3}
 --- !u!1001 &8311419681744490303
 PrefabInstance:
   m_ObjectHideFlags: 0
