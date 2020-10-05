@@ -52,7 +52,7 @@ public class InteractableDetector : MonoBehaviour
             {
                 SetInteractionText(interactable.description);
 
-                if (activationKeyDown)
+                if (activationKeyDown && GameManager.Instance.IsPlayerControllerEnabled)
                 {
                     interactable.Interact(player);
                 }
