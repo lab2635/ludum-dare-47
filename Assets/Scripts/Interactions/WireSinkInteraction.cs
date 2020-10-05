@@ -6,7 +6,8 @@ public class WireSinkInteraction : Interactable
 {
     public int slot;
     public AudioClip ConnectSFX;
-
+    public LightInteraction light;
+    
     private AudioSource audioSource;
     
     public override string description => "connect cable";
@@ -14,16 +15,21 @@ public class WireSinkInteraction : Interactable
     protected override void OnStart()
     {
         base.OnStart();
-
+        
         this.audioSource = gameObject.AddComponent<AudioSource>();
         this.audioSource.clip = this.ConnectSFX;
         this.audioSource.playOnAwake = false;
         this.audioSource.loop = false;
+        
+        light = GetComponentInChildren<LightInteraction>();
     }
 
     public void Reset()
     {
-        Interact(gameObject);
+        if (light != null)
+        {
+            light.Toggle(false);
+        }
     }
 
     public override bool CanPlayerInteract(CreatureController player)
@@ -54,6 +60,7 @@ public class WireSinkInteraction : Interactable
             source.sink = this;
             ev.player.attachment = null;
             cable.endPointTransform = transform;
+            light.Toggle(true);
         }
     }
 }

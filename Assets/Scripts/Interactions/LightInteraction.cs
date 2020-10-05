@@ -8,21 +8,14 @@ public class LightInteraction : ToggleInteraction
     public float lightIntensityMultiplier = 10f;
     public float responseTime = 25;
     public bool inheritIntesity = true;
-    public bool on = true;
     public bool pulse = false;
     public float pulsesPerSecond = 0f;
-
+    
     private Light attachedLight;
     private MeshRenderer bulbRenderer;
     private Material bulbMaterial;
     private Color currentColor;
     private float currentIntensity = 0f;
-    
-    protected override void OnInteract(ref InteractionEvent ev)
-    {
-        base.OnInteract(ref ev);
-        on = toggled;
-    }
 
     protected override void OnStart()
     {
@@ -49,9 +42,9 @@ public class LightInteraction : ToggleInteraction
 
     public void Update()
     {
-        var targetIntensity = on ? intensity : 0f;
+        var targetIntensity = toggled ? intensity : 0f;
 
-        if (on && pulse)
+        if (toggled && pulse)
         {
             var frequency = 1f / pulsesPerSecond;
             var alpha = 0.5f * (1 + Mathf.Sin(2 * Mathf.PI * frequency * Time.time));
@@ -63,8 +56,9 @@ public class LightInteraction : ToggleInteraction
 
         if (bulbMaterial != null)
         {
-            bulbMaterial.color = currentColor;
-            bulbMaterial.SetColor("_EmissionColor", currentColor * currentIntensity);
+            bulbMaterial.SetColor("_Color", bulbColor);
+            bulbMaterial.SetColor("_EmissionColor", currentColor);
+            bulbMaterial.SetFloat("_Intensity", currentIntensity);
         }
 
         if (attachedLight != null)
@@ -77,6 +71,5 @@ public class LightInteraction : ToggleInteraction
     public void Toggle(bool value)
     {
         toggled = value;
-        on = value;
     }
 }
