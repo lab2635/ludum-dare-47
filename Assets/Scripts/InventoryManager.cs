@@ -57,18 +57,20 @@ public class InventoryManager : MonoBehaviour
 
     public void RemoveItem(InventoryItems contents)
     {
+        if (contents == InventoryItems.None || contents == InventoryItems.Remote)
+            return;
+        
+        Inventory.Remove(contents);
+        
         switch (contents)
         {
             case InventoryItems.SpawnRoomKey:
-                this.Inventory.Remove(InventoryItems.SpawnRoomKey);
                 this.Key1View.Hide();
                 break;
             case InventoryItems.Room1RewardKey:
-                this.Inventory.Remove(InventoryItems.Room1RewardKey);
                 this.Key2View.Hide();
                 break;
             case InventoryItems.Room1Reward:
-                this.Inventory.Remove(InventoryItems.Room1Reward);
                 this.Key3View.Hide();
                 break;
             default: break;
