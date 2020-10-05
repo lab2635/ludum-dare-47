@@ -26,7 +26,6 @@ public class CreatureController : MonoBehaviour
     private Gun gun;
     private Animator animator;
     private CharacterController controller;
-    private bool grounded;
     private bool dashing;
     private Vector3 velocity;
     private Vector3 facing;
@@ -199,11 +198,11 @@ public class CreatureController : MonoBehaviour
             moveDirection = moveDirection.normalized;
         }
 
-        if(moveDirection != Vector3.zero && !this.runningAudioSource.isPlaying && this.grounded)
+        if(moveDirection != Vector3.zero && !this.runningAudioSource.isPlaying && this.controller.isGrounded)
         {
             this.runningAudioSource.Play();
         }
-        else if(moveDirection == Vector3.zero || !this.grounded)
+        else if(moveDirection == Vector3.zero || !this.controller.isGrounded)
         {
             this.runningAudioSource.Stop();
         }
@@ -237,5 +236,4 @@ public class CreatureController : MonoBehaviour
             GameManager.Instance.WinGame();
         }
     }
-
 }
