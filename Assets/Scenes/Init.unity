@@ -254,7 +254,7 @@ MonoBehaviour:
   IsPlayerControllerEnabled: 0
   TimeRemaining: 0
   TimeToReset: 30
-  CheckpointList: 00010101010000
+  CheckpointList: 00000000000000
   LoopCounter: 0
 --- !u!4 &505004780
 Transform:
