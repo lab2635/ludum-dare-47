@@ -1166,11 +1166,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   jumpForce: 5
-  gravity: {x: 0, y: -10, z: 0}
+  gravity: {x: 0, y: -8, z: 0}
   cameraOffset: {x: 0, y: 8, z: -2.5}
   rotationSpeed: 270
   dashCooldown: 1
-  dashAcceleration: 200
+  dashDuration: 0.15
+  dashAcceleration: 30
   handTransform: {fileID: 242456558581755771}
   attachment: {fileID: 0}
   RunningLoopSFX: {fileID: 8300000, guid: 0ae4ee84e932abc4e8f8316e37b35b66, type: 3}
@@ -1187,9 +1188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e962fb7241652604c976a8968010d00b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Key1View: {fileID: 0}
-  Key2View: {fileID: 0}
-  Key3View: {fileID: 0}
 --- !u!114 &7690058803164870683
 MonoBehaviour:
   m_ObjectHideFlags: 0

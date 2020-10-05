@@ -53,6 +53,7 @@ MonoBehaviour:
   CheckpointToActivate: 0
   requiredItem: 0
   activationText: activate checkpoint
+  TrophyObject: {fileID: 0}
 --- !u!65 &3164711186833622691
 BoxCollider:
   m_ObjectHideFlags: 0
