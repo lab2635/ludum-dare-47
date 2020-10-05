@@ -8,8 +8,19 @@ public class CheckpointInteractable : Interactable
     public Checkpoints CheckpointToActivate;
     public InventoryItems requiredItem;
     public string activationText = "activate checkpoint";
+    public GameObject TrophyObject;
 
     public override string description => activationText ?? string.Empty;
+
+    protected override void OnStart()
+    {
+        base.OnStart();
+
+        if(this.TrophyObject != null)
+        {
+            this.TrophyObject.SetActive(false);
+        }
+    }
 
     public override bool CanPlayerInteract(CreatureController player)
     {
@@ -28,7 +39,11 @@ public class CheckpointInteractable : Interactable
         if (ActivateCheckpoint)
         {
             GameManager.Instance.ActivateCheckpoint(this.CheckpointToActivate);
-            
+
+            if (this.TrophyObject != null)
+            {
+                this.TrophyObject.SetActive(true);
+            }
         }
 
         if (requiredItem != InventoryItems.None && requiredItem != InventoryItems.Remote)
