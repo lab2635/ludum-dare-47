@@ -14,10 +14,19 @@ public class SwitchInteraction : MonoBehaviour
 
     private void Start()
     {
+        interactable = GetComponent<CheckpointInteractable>();
         this.audioSource = gameObject.AddComponent<AudioSource>();
         this.audioSource.clip = this.PushSFX;
         this.audioSource.playOnAwake = false;
         this.audioSource.loop = false;
+
+        GameManager.OnReset += OnGameReset;
+    }
+
+    void OnGameReset()
+    {
+        ButtonAnimator.SetBool("isPressed", false);
+        interactable.canInteract = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,7 +46,6 @@ public class SwitchInteraction : MonoBehaviour
                     timestamp = Time.time
                 };
 
-                this.interactable = this.gameObject.GetComponent<CheckpointInteractable>();
                 this.interactable.Interact(ref interactionEvent);
 
                 this.interactable.canInteract = false;

@@ -15,12 +15,13 @@ public class OrderPuzzleInteraction : Interactable
         // var meshRenderer = GetComponent<MeshRenderer>();
         // indicatorMaterial = Instantiate(meshRenderer.material);
         // meshRenderer.material = indicatorMaterial;
+        GameManager.OnReset += ResetPuzzle;
         ResetPuzzle();
         base.OnStart();
     }
 
     private bool HasWon => state.Count == 0;
-    
+
     protected override void OnInteract(ref InteractionEvent ev)
     {
         if (HasWon)

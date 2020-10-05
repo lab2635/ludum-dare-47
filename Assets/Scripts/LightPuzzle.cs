@@ -4,9 +4,12 @@ using UnityEngine;
 public class LightPuzzle : Interactable
 {
     public LightInteraction[] lights;
+    public LeverInteraction[] levers;
 
     private int state;
+    private bool spawned;
 
+    private const int OFF_STATE = 0b00000000;
     private const int WIN_STATE = 0b00011111;
     private const int LIGHTS = 5;
 
@@ -18,15 +21,21 @@ public class LightPuzzle : Interactable
 
     protected override void OnStart()
     {
-        state = WIN_STATE;
-        Spawn();
+        state = OFF_STATE;
+        base.OnStart();
     }
 
     protected override void OnInteract(ref InteractionEvent ev)
     {
-        if (ev.proxied && ev.sender is LightInteraction light)
+        if (!spawned)
         {
-            var index = Array.IndexOf(lights, light);
+            Spawn();
+            return;
+        }
+        
+        if (ev.proxied && ev.sender is LeverInteraction lever)
+        {
+            var index = Array.IndexOf(levers, lever);
             
             if (index >= 0)
             {
@@ -36,9 +45,21 @@ public class LightPuzzle : Interactable
                     base.OnInteract(ref ev);
             }
         }
-        else
+        else if (ev.proxied)
         {
-            Spawn();
+            Reset();
+        }
+    }
+
+    public void Reset()
+    {
+        spawned = false;
+        state = OFF_STATE;
+        
+        for (var i = 0; i < levers.Length; i++)
+        {
+            levers[i].Toggle(false);
+            lights[i].Toggle(false);
         }
     }
 
@@ -46,7 +67,8 @@ public class LightPuzzle : Interactable
     {
         Generate();
         Synchronize();
-
+        spawned = true;
+        
         // toggleSound = FMODUnity.RuntimeManager.CreateInstance(toggleEvent);
         // solveSound = FMODUnity.RuntimeManager.CreateInstance(solveEvent);
         // solveSound.setVolume(0.4f);
@@ -57,11 +79,13 @@ public class LightPuzzle : Interactable
         var won = IsWon();
         var interactable = !won;
         
-        for (var i = 0; i < lights.Length; i++)
+        for (var i = 0; i < levers.Length; i++)
         {
             var value = (state >> i) & 1;
+            levers[i].canInteract = interactable;
             lights[i].canInteract = interactable;
             lights[i].Toggle(value != 0);
+            levers[i].Toggle(value != 0);
         }
 
         return won;
