@@ -17937,6 +17937,10 @@ PrefabInstance:
       propertyPath: proxies.Array.data[0]
       value: 
       objectReference: {fileID: 338572549}
+    - target: {fileID: 2571801714154425606, guid: 73134eb703e0dc84b83a6650568fbfac, type: 3}
+      propertyPath: canInteract
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73134eb703e0dc84b83a6650568fbfac, type: 3}
 --- !u!4 &360366331 stripped
@@ -24327,6 +24331,10 @@ PrefabInstance:
       propertyPath: proxies.Array.data[0]
       value: 
       objectReference: {fileID: 1891032203}
+    - target: {fileID: 2571801714154425606, guid: 73134eb703e0dc84b83a6650568fbfac, type: 3}
+      propertyPath: canInteract
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73134eb703e0dc84b83a6650568fbfac, type: 3}
 --- !u!4 &521499766 stripped
@@ -26305,6 +26313,10 @@ PrefabInstance:
       propertyPath: proxies.Array.data[0]
       value: 
       objectReference: {fileID: 1059001433}
+    - target: {fileID: 2571801714154425606, guid: 73134eb703e0dc84b83a6650568fbfac, type: 3}
+      propertyPath: canInteract
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73134eb703e0dc84b83a6650568fbfac, type: 3}
 --- !u!4 &573426633 stripped
@@ -35880,6 +35892,10 @@ PrefabInstance:
       propertyPath: proxies.Array.data[0]
       value: 
       objectReference: {fileID: 1728575443}
+    - target: {fileID: 2571801714154425606, guid: 73134eb703e0dc84b83a6650568fbfac, type: 3}
+      propertyPath: canInteract
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73134eb703e0dc84b83a6650568fbfac, type: 3}
 --- !u!4 &746779953 stripped
@@ -81350,6 +81366,10 @@ PrefabInstance:
       propertyPath: proxies.Array.data[0]
       value: 
       objectReference: {fileID: 1398971342}
+    - target: {fileID: 2571801714154425606, guid: 73134eb703e0dc84b83a6650568fbfac, type: 3}
+      propertyPath: canInteract
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73134eb703e0dc84b83a6650568fbfac, type: 3}
 --- !u!4 &1568142417 stripped
@@ -99022,6 +99042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e057d5d087cfbb4c889515c32233dab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AcidDeathSFX: {fileID: 0}
 --- !u!65 &1934480315
 BoxCollider:
   m_ObjectHideFlags: 0
