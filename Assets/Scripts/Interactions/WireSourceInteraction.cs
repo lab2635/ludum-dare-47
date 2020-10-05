@@ -44,7 +44,7 @@ public class WireSourceInteraction : Interactable
         cable.Clear();
         sink = null;
     }
-
+    
     protected override void OnInteract(ref InteractionEvent ev)
     {
         if (ev.player.attachment == gameObject)
