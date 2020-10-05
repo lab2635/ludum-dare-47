@@ -1674,6 +1674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnlyShootable: 1
   ButtonAnimator: {fileID: 7069945930029965390}
+  PushSFX: {fileID: 8300000, guid: 07c4c52765a1b874faf27863f89c571e, type: 3}
 --- !u!114 &4038797403807362296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1692,6 +1693,8 @@ MonoBehaviour:
   holdTime: 0
   ActivateCheckpoint: 1
   CheckpointToActivate: 0
+  requiredItem: 0
+  activationText: activate checkpoint
 --- !u!1001 &1456866088478711164
 PrefabInstance:
   m_ObjectHideFlags: 0
