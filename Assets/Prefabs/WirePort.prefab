@@ -147,7 +147,7 @@ MonoBehaviour:
   - {fileID: 1501238656335256447}
   holdTime: 0
   slot: 0
-  ConnectSFX: {fileID: 0}
+  ConnectSFX: {fileID: 8300000, guid: 6b8d92e5b08dace43a7354379d1a9c50, type: 3}
 --- !u!65 &8441651897069356539
 BoxCollider:
   m_ObjectHideFlags: 0

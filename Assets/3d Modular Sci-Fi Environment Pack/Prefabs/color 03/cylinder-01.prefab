@@ -119,7 +119,7 @@ MonoBehaviour:
   ActivateCheckpoint: 1
   CheckpointToActivate: 2
   requiredItem: 3
-  activationText: activate checkpoint
+  activationText: Activate Checkpoint
   TrophyObject: {fileID: 3472460032444099895}
 --- !u!1001 &3472460032444197781
 PrefabInstance:
