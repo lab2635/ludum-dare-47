@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 4004444215762278197}
   - component: {fileID: 3427302916098809848}
   - component: {fileID: 3783198515557291762}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WireSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}

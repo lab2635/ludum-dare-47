@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 7258718577607959007}
   - component: {fileID: 7258718577607959006}
   - component: {fileID: 7258718577607959003}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PuzzleButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
