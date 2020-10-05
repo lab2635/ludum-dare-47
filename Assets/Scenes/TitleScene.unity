@@ -224,12 +224,11 @@ MonoBehaviour:
   TimerText: {fileID: 5734621653677655332}
   WinContainer: {fileID: 5734621653677655331}
   WinText: {fileID: 5734621653677655330}
-  SkipTitle: 1
-  NeverLose: 1
+  NeverLose: 0
   IsPlayerControllerEnabled: 0
   TimeRemaining: 0
   TimeToReset: 30
-  CheckpointList: 00010101010100
+  CheckpointList: 00000000000000
   LoopCounter: 0
 --- !u!4 &505004780
 Transform:
