@@ -66,6 +66,14 @@ public class CreatureController : MonoBehaviour
 	    
 	    gun.gunEnabled = true;
     }
+
+    public void RemoveGun()
+    {
+        if (gun != null)
+        {
+            gun.gunEnabled = false;
+        }
+    }
     
     public void RemoveAttachment()
     {
