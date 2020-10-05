@@ -5,6 +5,21 @@ using UnityEngine;
 public class DisplayScreenInteraction : Interactable
 {
     public GameObject screen;
+    public bool hideOnReset = false;
+
+    protected override void OnStart()
+    {
+        GameManager.OnReset += Reset;
+        base.OnStart();
+    }
+
+    void Reset()
+    {
+        if (hideOnReset)
+        {
+            screen.SetActive(false);
+        }
+    }
     
     protected override void OnInteract(ref InteractionEvent ev)
     {

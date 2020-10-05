@@ -5,7 +5,8 @@ public class LightPuzzle : Interactable
 {
     public LightInteraction[] lights;
     public LeverInteraction[] levers;
-
+    public bool resetOnRespawn = false;
+    
     private int state;
     private bool spawned;
 
@@ -22,6 +23,9 @@ public class LightPuzzle : Interactable
     protected override void OnStart()
     {
         state = OFF_STATE;
+        
+        GameManager.OnReset += OnGameReset;
+
         base.OnStart();
     }
 
@@ -51,6 +55,14 @@ public class LightPuzzle : Interactable
         }
     }
 
+    void OnGameReset()
+    {
+        if (resetOnRespawn)
+        {
+            Spawn();
+        }
+    }
+    
     public void Reset()
     {
         spawned = false;

@@ -1,5 +1,6 @@
 ﻿using Doozy.Engine.UI;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -162,6 +163,8 @@ public class GameManager : SingletonBehaviour<GameManager>
             StartCoroutine(pdl.RespawnPlayer(action));
         }
     }
+
+    
 }
 
 public enum Checkpoints
