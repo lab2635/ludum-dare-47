@@ -15,6 +15,12 @@ MonoBehaviour:
   CategoryName: Key Containers
   DatabaseType: 2
   Names:
-  - Key 1
-  - Key 2
-  - Key 3
+  - Spawn Room Key
+  - Room 1 Key
+  - Room 1 Reward
+  - Room 2 Reward
+  - Room 4 Key
+  - Room 4 Reward
+  - Room 5 Reward
+  - Room 6 Key 1
+  - Room 6 Key 2

@@ -155,11 +155,11 @@ public class CreatureController : MonoBehaviour
             moveDirection = moveDirection.normalized;
         }
 
-        if(moveDirection != Vector3.zero && !this.runningAudioSource.isPlaying)
+        if(moveDirection != Vector3.zero && !this.runningAudioSource.isPlaying && this.grounded)
         {
             this.runningAudioSource.Play();
         }
-        else if(moveDirection == Vector3.zero)
+        else if(moveDirection == Vector3.zero || !this.grounded)
         {
             this.runningAudioSource.Stop();
         }
