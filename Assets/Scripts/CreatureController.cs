@@ -67,7 +67,6 @@ public class CreatureController : MonoBehaviour
 	    attachment = null;
     }
 
-
     private bool CanDash() => dashAccumulator >= dashCooldown;
 
     void Dash()
@@ -179,14 +178,6 @@ public class CreatureController : MonoBehaviour
         
         var direction = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
         body.velocity = direction * speed;
-    }
-
-    private void CheckGround()
-    {
-        if (Physics.Raycast(new Ray(transform.position, Vector3.down), 1f))
-        {
-            grounded = true;
-        }
     }
 
 }

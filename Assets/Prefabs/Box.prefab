@@ -9,9 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3394942068438358000}
-  m_Layer: 0
+  - component: {fileID: 1858663174686075650}
+  - component: {fileID: 5805218733825442822}
+  - component: {fileID: 3403740477330243333}
+  m_Layer: 10
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Pushable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,6 +34,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1858663174686075650
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3394942068438358003}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!54 &5805218733825442822
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3394942068438358003}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &3403740477330243333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3394942068438358003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63d120623eae41efa4370512d908924b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteract: 1
+  cooldown: 0
+  proxies: []
+  holdTime: 0
+  distance: 2
+  speed: 5
+  PushSFX: {fileID: 8300000, guid: 54ac22988f836934ea7e44daca4f58d9, type: 3}
 --- !u!54 &1902368470
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -60,25 +111,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &1902368469
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8311419681744587167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63d120623eae41efa4370512d908924b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canInteract: 1
-  cooldown: 0
-  proxies: []
-  holdTime: 0
-  distance: 2
-  speed: 5
-  PushSFX: {fileID: 8300000, guid: 54ac22988f836934ea7e44daca4f58d9, type: 3}
 --- !u!1001 &8311419681744490303
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -92,7 +124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: bd8f28e4e2c16364dab65f3a94a3c9d3, type: 3}
       propertyPath: m_TagString
-      value: Pushable
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bd8f28e4e2c16364dab65f3a94a3c9d3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -100,7 +132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bd8f28e4e2c16364dab65f3a94a3c9d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6404266
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bd8f28e4e2c16364dab65f3a94a3c9d3, type: 3}
       propertyPath: m_LocalPosition.z

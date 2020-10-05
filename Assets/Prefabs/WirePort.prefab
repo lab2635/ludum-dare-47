@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 1681385099295084393}
   - component: {fileID: 8561235664388126120}
   - component: {fileID: 8441651897069356539}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WirePort
   m_TagString: Untagged
   m_Icon: {fileID: 0}

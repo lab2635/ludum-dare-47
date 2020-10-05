@@ -83,7 +83,7 @@ public class ChestInteractable : Interactable
             return;
         }
 
-        if (!contentsTaken)
+        if (!ev.proxied && !contentsTaken)
         {
             if (RequiredItem != InventoryItems.None && RequiredItem != InventoryItems.Remote)
             {

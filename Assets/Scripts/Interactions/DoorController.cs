@@ -13,6 +13,8 @@ public class DoorController : Interactable
     private Animator animator;
     private bool doorOpened;
 
+    public override string description => doorOpened ? "close door" : "open door";
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,19 @@ public class DoorController : Interactable
         }
     }
 
+    public override bool CanPlayerInteract(CreatureController player)
+    {
+        switch (RequiredItem)
+        {
+            case InventoryItems.Remote:
+                return false;
+            case InventoryItems.None:
+                return base.CanPlayerInteract(player);
+            default:
+                return player.GetComponent<InventoryManager>().Inventory.Contains(this.RequiredItem);
+        }
+    }
+    
     protected override void OnInteract(ref InteractionEvent ev)
     {
         if (ev.player.GetComponent<InventoryManager>().Inventory.Contains(this.RequiredItem)

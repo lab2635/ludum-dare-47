@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PushInteraction : Interactable
@@ -22,7 +23,20 @@ public class PushInteraction : Interactable
 
     public override string description => pushing ? string.Empty : "push box";
 
-    public override bool CanPlayerInteract(CreatureController player) => !pushing;
+    public override bool CanPlayerInteract(CreatureController player)
+    {
+        if (pushing)
+            return false;
+        
+        var playerPosition = player.transform.position;
+        var pushDirection = SnapToCardinalDirection(transform.position - playerPosition);
+        var dot = Vector3.Dot(pushDirection, player.transform.forward);
+        var angle = Vector3.Angle(pushDirection, player.transform.forward);
+        
+        var min = 20 * Mathf.Deg2Rad;
+        var max = 60 * Mathf.Deg2Rad;
+        return dot >= min && dot <= max;
+    }
 
     protected override void OnStart()
     {
@@ -35,12 +49,12 @@ public class PushInteraction : Interactable
 
         GameManager.OnReset += this.ResetPosition;
     }
-
+    
     protected override void OnInteract(ref InteractionEvent ev)
-    {
+    { 
         var playerPosition = ev.player.transform.position;
-        var pushDirection = transform.position - playerPosition;
-        Push(pushDirection.normalized);
+        var pushDirection = SnapToCardinalDirection(transform.position - playerPosition);
+        Push(pushDirection);
     }
 
     private Vector3 SnapToCardinalDirection(Vector3 v)
@@ -59,24 +73,27 @@ public class PushInteraction : Interactable
         {
             this.audioSource.Play();
             pushing = true;
-            direction = SnapToCardinalDirection(dir);
+            direction = dir;
             target = body.position + (direction * distance);
         }
     }
-
+    
     private void FixedUpdate()
     {
         if (!pushing)
         {
             return;
         }
-        
+
         if (body.SweepTest(direction, out RaycastHit hit, speed * (distance / 2) * Time.deltaTime))
         {
-            if (!hit.collider.CompareTag("Pushable"))
+            if (!hit.collider.CompareTag("Door"))
             {
-                pushing = false;
-                return;
+                if (!hit.collider.CompareTag("Pushable"))
+                {
+                    pushing = false;
+                    return;
+                }
             }
         }
 
