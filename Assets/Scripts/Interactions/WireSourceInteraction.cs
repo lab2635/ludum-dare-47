@@ -57,10 +57,18 @@ public class WireSourceInteraction : Interactable
         
         if (ev.player.attachment == null)
         {
+            if (sink != null)
+            {
+                sink.Reset();
+                sink = null;
+            }
+            
             this.audioSource.Play();
             grabbed = true;
             ev.player.attachment = gameObject;
             cable.endPointTransform = ev.player.handTransform;
         }
+        
+        
     }
 }
