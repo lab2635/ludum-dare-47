@@ -1169,7 +1169,7 @@ MonoBehaviour:
   gravity: {x: 0, y: -8, z: 0}
   cameraOffset: {x: 0, y: 8, z: -2.5}
   rotationSpeed: 270
-  dashCooldown: 1
+  dashCooldown: 0.5
   dashDuration: 0.15
   dashAcceleration: 30
   handTransform: {fileID: 242456558581755771}

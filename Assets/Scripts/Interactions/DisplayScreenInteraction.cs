@@ -6,6 +6,7 @@ public class DisplayScreenInteraction : Interactable
 {
     public GameObject screen;
     public bool hideOnReset = false;
+    public Checkpoints RelatedCheckpoint;
 
     protected override void OnStart()
     {
@@ -16,6 +17,11 @@ public class DisplayScreenInteraction : Interactable
     void Reset()
     {
         if (hideOnReset)
+        {
+            screen.SetActive(false);
+        }
+
+        if(RelatedCheckpoint == Checkpoints.GunRoomComplete && !GameManager.Instance.CheckpointList[(int)RelatedCheckpoint])
         {
             screen.SetActive(false);
         }
