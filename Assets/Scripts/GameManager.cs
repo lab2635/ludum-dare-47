@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(PlayerDeathLoop))]
 public class GameManager : SingletonBehaviour<GameManager>
 {
     public string TitleScene;
@@ -24,6 +25,8 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     public float TimeRemaining;
     public float TimeToReset;
+    
+    
 
     public delegate void ResetAction();
     public static event ResetAction OnReset;
@@ -33,17 +36,21 @@ public class GameManager : SingletonBehaviour<GameManager>
 
     private bool isPlaying;
     private float startTime;
-
     private bool alreadyDead;
+    private PlayerDeathLoop playerDeathLoop;
+    private CreatureController player;
 
     void Start()
     {
+        playerDeathLoop = GetComponent<PlayerDeathLoop>();
+
         DontDestroyOnLoad(this.gameObject);
 
         this.isPlaying = false;
         this.alreadyDead = true;
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+
     }
 
     public void StartGame()
@@ -53,6 +60,8 @@ public class GameManager : SingletonBehaviour<GameManager>
         this.IsPlayerControllerEnabled = true;
         this.TimeRemaining = this.TimeToReset;
         this.TimerView.Show();
+
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<CreatureController>();
     }
 
     public void WinGame()
@@ -130,21 +139,28 @@ public class GameManager : SingletonBehaviour<GameManager>
             IsPlayerControllerEnabled = false;
             alreadyDead = true;
 
-            var pdl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDeathLoop>();
-            StartCoroutine(RespawnPlayer(pdl));
+            StopAllCoroutines();
+            StartCoroutine(RespawnPlayer());
         }
     }
 
-    private IEnumerator RespawnPlayer(PlayerDeathLoop loop)
+    private IEnumerator RespawnPlayer()
     {
-        loop.KillPlayer();
+        if (!player)
+            yield break;
 
+        playerDeathLoop.KillPlayer(player);
+        
         OnReset();
         
         yield return new WaitForSeconds(2);
 
-        loop.RespawnPlayer();
-        
+        playerDeathLoop.RespawnPlayer(player);
+
+        yield return null;
+
+        player.gameObject.SetActive(true);
+
         IsPlayerControllerEnabled = true; 
         alreadyDead = false; 
         TimeRemaining = TimeToReset;

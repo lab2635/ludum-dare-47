@@ -13,6 +13,8 @@ TagManager:
   - Pushable
   - Bullets
   - Door
+  - TimerText
+  - PlayerDeath
   layers:
   - Default
   - TransparentFX
